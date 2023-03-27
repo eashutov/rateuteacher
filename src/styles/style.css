@@ -193,7 +193,7 @@ INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX IN
 */
 
 
-.main-index {
+.main-flex-type {
     flex-grow: 1;
     display: flex;
     align-items: center;
@@ -332,7 +332,7 @@ QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNA
 */
 
 
-.main-qnaire {
+.main-grid-type {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
     background-color: rgba(255, 255, 255, 0.9);
