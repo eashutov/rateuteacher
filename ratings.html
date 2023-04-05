@@ -43,21 +43,46 @@
         <!-- MAIN -->
 
 
-        <main class="main-index">
-            <div class="code-window">
-                <div class="logo-text">
-                    RateUTeacher
-                </div>
-                <div class="form">
-                    <form action="#" method="get" class="form-input">
-                        <div class="input-container">
-                            <input type="text" class="code-input" id="code" placeholder="Введите код опроса" required>
-                            <label for="code" class="label">Код опроса</label>
-                            <button type="submit" id="btn">Начать опрос</button>
+        <main class="main-grid-type vh">
+            <div></div>
+            <div class="grid-type-container">
+                <div class="category">
+                    <h1>Рейтинг преподавателей</h1>
+                    <div class="scroll-table">
+                        <table class="table_sort" id="head">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Фамилия Имя Отчество</th>
+                                    <th>Дисциплина</th>
+                                    <th>Кафедра</th>
+                                    <th>Стаж (лет)</th>
+                                    <th>Рейтинг (текущий)</th>
+                                    <th>Рейтинг (общий)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="scroll-table-body">
+                            <table class="table_sort" id="body">
+                                <tbody>
+                                    <!-- СЮДА ДОБАВЛЯТЬ ПРЕПОДАВАТЕЛЕЙ ИЗ БАЗЫ ДАННЫХ -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Анатольев Александр Геннадьевич</td>
+                                        <td>Веб-программирование</td>
+                                        <td>АСОИУ</td>
+                                        <td>17</td>
+                                        <td>4.7</td>
+                                        <td>4.8</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
+            <div></div>
         </main>
 
 
@@ -70,7 +95,7 @@
                 <p>egorkamaxwell@yandex.ru</p>
             </div>
             <div class="powered-by">
-                <h1>OmSTU, 2023</h1>
+                <h2>OmSTU, 2023</h2>
                 <p>by E.A. Shutov</p>
             </div>
             <div class="references hover">
@@ -81,6 +106,6 @@
         </footer>
     
     </div>
-    <script src="src/scripts/pattern.js"></script>
+    <script src="src/scripts/sort.js"></script>
 </body>
 </html>

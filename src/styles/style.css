@@ -3,12 +3,6 @@
 :root {
     --primary: #84bdc2;
     --secondary: #725ce0;
-
-    /* --primary: #085078;
-    --secondary: #85D8CE; */
-
-    /* --primary: #333333;
-    --secondary: #dd1818; */
 }
 
 *, *::after, *::before {
@@ -82,7 +76,6 @@ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     position: absolute;
     width: 0%;
     height: 3px;
-    /* background-color: var(--primary); */
     background-image: linear-gradient(to right, var(--primary), var(--secondary));
     transition: all .2s ease;
 }
@@ -177,7 +170,7 @@ FOOTER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     height: 30px;
 }
 
-.site-footer h1 {
+.site-footer h2 {
     font-weight: 700;
     font-size: 16px;
 }
@@ -339,14 +332,14 @@ QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNA
     justify-items: center;
 }
 
-.qnaire-container {
+.grid-type-container {
     font-weight: 500;
     width: 100%;
     display: flex;
-    flex-direction: column;   
+    flex-direction: column;
 }
 
-.qnaire-container h1 {
+h1 {
     margin-bottom: 30px;
     width: fit-content;
     font-weight: 700;
@@ -359,11 +352,11 @@ QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNA
     color: transparent; 
 }
 
-.qnaire-container p {
+.grid-type-container p {
     font-size: 18px;
 }
 
-.qnaire-container p+.question {
+.grid-type-container p+.question {
     padding: 20px;
 }
 
@@ -386,7 +379,7 @@ QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNA
 
 .question {
     padding: 15px;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid rgb(206, 206, 206);
     background-color: rgba(255, 255, 255, 0.6);
     margin-bottom: 10px;
 }
@@ -465,7 +458,7 @@ strong {
 }
 
 /* 
-КАКАЯ-ТО ШЛЯПА С .input-radio, НЕ ЗНАЮ КАК ОНИ РАБОТАЮТ, НО ПОЧЕМУ-ТО РАБОТАЮТ
+КАКАЯ-ТО ШЛЯПА С .input-radio, НЕ ЗНАЮ КАК ОНИ РАБОТАЮТ, НО ПОЧЕМУ-ТО РАБОТАЕТ
 ВТОРОЙ СТИЛЬ НА 406 СТРОКЕ
 */
 
@@ -524,3 +517,160 @@ strong {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS 
+*/
+
+
+.card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+    border: 1px solid rgb(206, 206, 206);
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.card img {
+    margin-left: 15px;
+    object-fit: cover;
+    width: 200px;
+    max-height: 260px;
+}
+
+.card p {
+    margin-bottom: 4px;
+}
+
+#kaf {
+    outline: none;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgb(206, 206, 206);
+    width: 100%;
+    padding: 2px;
+    margin-bottom: 25px;
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-size: 20px;
+}
+
+.vh {
+    height: 100%;
+}
+
+
+.card-name {
+    font-size: 30px;
+    line-height: 0.9;
+}
+
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS
+*/
+
+.table_sort {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.table_sort td,
+.table_sort th {
+    height: 40px;
+    text-align: center;
+    border: 1px solid rgb(206, 206, 206);
+}
+
+.table_sort th {
+    height: 50px;
+    cursor: pointer;
+    user-select: none;
+}
+
+thead th:nth-child(1),
+tbody td:nth-child(1) {
+    width: 3%;
+}
+  
+thead th:nth-child(2),
+tbody td:nth-child(2) {
+    width: 35%;
+}
+  
+thead th:nth-child(3),
+tbody td:nth-child(3) {
+    width: 20%;
+}
+  
+thead th:nth-child(4),
+tbody td:nth-child(4) {
+    width: 10%;
+}
+
+thead th:nth-child(5),
+tbody td:nth-child(5) {
+    width: 10%;
+}
+
+thead th:nth-child(6),
+tbody td:nth-child(6) {
+    width: 11%;
+}
+
+thead th:nth-child(7),
+tbody td:nth-child(7) {
+    width: 11%;
+}
+
+thead th:nth-child(8) {
+    width: 12.5px;
+    border: none;
+}
+
+th.sorted[data-order="1"],
+th.sorted[data-order="-1"] {
+    position: relative;
+}
+
+th.sorted[data-order="1"]::after,
+th.sorted[data-order="-1"]::after {
+    right: 8px;
+    position: absolute;
+}
+
+th.sorted[data-order="-1"]::after {
+    content: "▼"
+}
+
+th.sorted[data-order="1"]::after {
+    content: "▲"
+}
+
+.scroll-table-body {
+	height: 580px;
+	overflow-x: auto;
+    overflow-y: scroll;
+}
+
+/* Стили для скролла */
+::-webkit-scrollbar {
+	width: 12px;
+}  
+
+::-webkit-scrollbar-thumb {
+	background-color: rgb(206, 206, 206); 
+} 
