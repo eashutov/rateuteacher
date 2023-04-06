@@ -3,6 +3,8 @@
 :root {
     --primary: #84bdc2;
     --secondary: #725ce0;
+    --gradient: linear-gradient(to right, var(--primary), var(--secondary));
+    /* ИЗМЕНИТЬ ВО ВСЕМ ФАЙЛЕ ДЛИННУЮ КОНСТРУКЦИЮ НА ПЕРЕМЕННУЮ */
 }
 
 *, *::after, *::before {
@@ -191,7 +193,7 @@ INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX IN
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.96);
 }
 
 .form {
@@ -328,7 +330,7 @@ QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNA
 .main-grid-type {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.96);
     justify-items: center;
 }
 
@@ -517,6 +519,55 @@ strong {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+.btn-up {
+    /* фиксированное позиционирование */
+    position: fixed;
+    /* цвет фона */
+    background-color: transparent;
+    /* расстояние от правого края окна браузера */
+    right: 20px;
+    /* расстояние от нижнего края окна браузера */
+    bottom: 100px;
+    /* скругление верхнего левого угла */
+    border-top-left-radius: 8px;
+    /* скругление верхнего правого угла */
+    border-top-right-radius: 8px;
+    /* вид курсора */
+    cursor: pointer;
+    /* отображение элемента как flex */
+    display: flex;
+    /* выравниваем элементы внутри элемента по центру вдоль поперечной оси */
+    align-items: center;
+    /* выравниваем элементы внутри элемента по центру вдоль главной оси */
+    justify-content: center;
+    /* ширина элемента */
+    width: 60px;
+    /* высота элемента */
+    height: 50px;
+  }
+  
+  .btn-up::before {
+    content: "";
+    width: 50px;
+    height: 50px;
+    background: white no-repeat center center;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 50%;
+    background: white no-repeat center center;
+    background-size: 50% 50%;
+    background-image: url("../images/up-arrow.svg");
+  }
+  
+  .btn-up_hide {
+    display: none;
+  }
+  
+  @media (hover: hover) and (pointer: fine) {
+    .btn-up:hover {
+      opacity: 0.5; /* цвет заднего фона при наведении */
+    }
+  }
 
 /* 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
