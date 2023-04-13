@@ -50,7 +50,7 @@
                 </div>
                 <h2>Спасибо за участие в опросе!</h2>
                 <a href="http://localhost/rateuteacher/">Вернуться на главную</a>
-                <a href="http://localhost/rateuteacher/ratings.html">Посмотреть текущие рейтинги</a>
+                <a href="http://localhost/rateuteacher/ratings.php">Посмотреть текущие рейтинги</a>
             </div>
         </main>
 
