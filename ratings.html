@@ -43,46 +43,41 @@
         <!-- MAIN -->
 
 
-        <main class="main-grid-type vh">
+        <main class="main-grid-type">
             <div></div>
             <div class="grid-type-container">
-                <div class="category">
+                <div class="category after-category">
                     <h1>Рейтинг преподавателей</h1>
-                    <div class="scroll-table">
-                        <table class="table_sort" id="head">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Фамилия Имя Отчество</th>
-                                    <th>Дисциплина</th>
-                                    <th>Кафедра</th>
-                                    <th>Стаж (лет)</th>
-                                    <th>Рейтинг (текущий)</th>
-                                    <th>Рейтинг (общий)</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <div class="scroll-table-body">
-                            <table class="table_sort" id="body">
-                                <tbody>
-                                    <!-- СЮДА ДОБАВЛЯТЬ ПРЕПОДАВАТЕЛЕЙ ИЗ БАЗЫ ДАННЫХ -->
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Анатольев Александр Геннадьевич</td>
-                                        <td>Веб-программирование</td>
-                                        <td>АСОИУ</td>
-                                        <td>17</td>
-                                        <td>4.7</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    <table class="table_sort">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Фамилия Имя Отчество</th>
+                                <th>Дисциплина</th>
+                                <th>Кафедра</th>
+                                <th>Стаж (лет)</th>
+                                <th>Рейтинг (текущий)</th>
+                                <th>Рейтинг (общий)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- СЮДА ДОБАВЛЯТЬ ПРЕПОДАВАТЕЛЕЙ ИЗ БАЗЫ ДАННЫХ -->
+                            <tr>
+                                <td>1</td>
+                                <td>Анатольев Александр Геннадьевич</td>
+                                <td>Веб-программирование</td>
+                                <td>АСОИУ</td>
+                                <td>17</td>
+                                <td>4.7</td>
+                                <td>4.8</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div></div>
+            <div>
+                <div class="btn-up btn-up_hide"></div>
+            </div>
         </main>
 
 
@@ -106,6 +101,7 @@
         </footer>
     
     </div>
+    <script src="src/scripts/btnup.js"></script>
     <script src="src/scripts/sort.js"></script>
 </body>
 </html>

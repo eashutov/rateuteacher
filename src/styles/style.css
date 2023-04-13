@@ -282,7 +282,7 @@ INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX IN
     animation-delay: 0.2s;
 }
 
-.input-container button {
+.grad-btn {
     width: 100%;
     height: 25px;
     background: linear-gradient(to right, var(--primary), var(--secondary));
@@ -298,11 +298,11 @@ INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX IN
     cursor: pointer;
 }
 
-.input-container button:hover:enabled {
+.grad-btn:hover:enabled {
     animation: gradient-animation 3s ease infinite;
 }
 
-.input-container button:disabled {
+.grad-btn:disabled {
     opacity: 0;
     cursor: default;
 }
@@ -371,6 +371,10 @@ h1 {
     border-width: 0 0 4px 0; 
     border-style: solid;
     border-image-slice: 1;
+}
+
+.after-category {
+    margin-bottom: 35px;
 }
 
 .qnaire-info p {
@@ -521,33 +525,19 @@ strong {
 }
 
 .btn-up {
-    /* фиксированное позиционирование */
     position: fixed;
-    /* цвет фона */
     background-color: transparent;
-    /* расстояние от правого края окна браузера */
     right: 20px;
-    /* расстояние от нижнего края окна браузера */
     bottom: 100px;
-    /* скругление верхнего левого угла */
-    border-top-left-radius: 8px;
-    /* скругление верхнего правого угла */
-    border-top-right-radius: 8px;
-    /* вид курсора */
     cursor: pointer;
-    /* отображение элемента как flex */
     display: flex;
-    /* выравниваем элементы внутри элемента по центру вдоль поперечной оси */
     align-items: center;
-    /* выравниваем элементы внутри элемента по центру вдоль главной оси */
     justify-content: center;
-    /* ширина элемента */
     width: 60px;
-    /* высота элемента */
-    height: 50px;
-  }
+    height: 60px;
+}
   
-  .btn-up::before {
+.btn-up::before {
     content: "";
     width: 50px;
     height: 50px;
@@ -557,17 +547,17 @@ strong {
     background: white no-repeat center center;
     background-size: 50% 50%;
     background-image: url("../images/up-arrow.svg");
-  }
+}
   
-  .btn-up_hide {
+.btn-up_hide {
     display: none;
-  }
+}
   
-  @media (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) {
     .btn-up:hover {
       opacity: 0.5; /* цвет заднего фона при наведении */
     }
-  }
+}
 
 /* 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -624,6 +614,26 @@ CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS
 .card-name {
     font-size: 30px;
     line-height: 0.9;
+}
+
+#admin-table thead th:nth-child(1),
+#admin-table tbody td:nth-child(1) {
+    width: 3%;
+}
+  
+#admin-table thead th:nth-child(2),
+#admin-table tbody td:nth-child(2) {
+    width: 30%;
+}
+  
+#admin-table thead th:nth-child(3),
+#admin-table tbody td:nth-child(3) {
+    width: 30%;
+}
+  
+#admin-table thead th:nth-child(4),
+#admin-table tbody td:nth-child(4) {
+    width: 14%;
 }
 
 
@@ -724,4 +734,56 @@ th.sorted[data-order="1"]::after {
 
 ::-webkit-scrollbar-thumb {
 	background-color: rgb(206, 206, 206); 
-} 
+}
+
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE 
+*/
+
+.profile-personal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+#profile-table thead th:nth-child(1),
+#profile-tabletbody td:nth-child(1) {
+    width: 30%;
+}
+  
+#profile-table thead th:nth-child(2),
+#profile-table tbody td:nth-child(2) {
+    width: 35%;
+}
+  
+#profile-table thead th:nth-child(3),
+#profile-table tbody td:nth-child(3) {
+    width: 35%;
+}
+
+.default-input {
+    font-family: 'Montserrat';
+    outline: 0;
+    border: 1px solid rgb(206, 206, 206);
+    width: 90%;
+    padding: 2px;
+    font-size: 16px;
+}
+
+#profile-table th {
+    cursor: text;
+    user-select: auto;
+}
+
+.question h3 {
+    text-align: center;
+}
+
+.add-input {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 10px;
+}

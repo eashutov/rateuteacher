@@ -10,10 +10,10 @@ function getSort({ target }) {
 		return order * collator.compare(a.children[index].textContent, b.children[index].textContent);
 	};
 
-	// const tablesBodies = Array.from(target.closest("table").tBodies);
+	const tablesBodies = Array.from(target.closest("table").tBodies);
     // target.closest исходный вариант, но подходит только для цельной таблицы 
     // (без прокрутки, т.к. прокрутка разбивает таблицу на две)
-    const tablesBodies = Array.from(document.getElementById('body').tBodies);
+   /*  const tablesBodies = Array.from(document.getElementById('body').tBodies); */
 
 	tablesBodies.forEach(tBody => {
 		tBody.append(...Array.from(tBody.rows).sort(comparator(index, order)));
