@@ -1,3 +1,6 @@
+<?php 
+    session_status() === PHP_SESSION_ACTIVE ?: session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,13 +52,26 @@
                     RateUTeacher
                 </div>
                 <div class="form">
-                    <form action="#" method="get" class="form-input">
-                        <div class="input-container">
-                            <input type="text" class="code-input" id="code" placeholder="Введите код опроса" required>
-                            <label for="code" class="label">Код опроса</label>
-                            <button type="submit" id="btn">Начать опрос</button>
+                    <div class="question">
+                    <h3>АВТОРИЗАЦИЯ</h3>
+                    <form action="src/scripts/php/login.php" method="post" class="form-input">
+                        <div class="add-input">
+                            <p><strong>Логин:</strong></p><input class="default-input" type="text" name="login" autocomplete="off">
+                            <p><strong>Пароль:</strong></p><input class="default-input" type="password" name="password" autocomplete="off">
                         </div>
+                        
+                        
+                        <!-- Какая-то хуйня с предупреждением, потому что через style.css ничего не меняется -->
+                        <!-- пока обернул в h3 -->
+                        <?php
+                            if(isset($_SESSION['wrong_info'])) {
+                                echo "<div class='warn-c'><kbd class='warn'>".$_SESSION['wrong_info']."</kbd></div>";
+                            }
+                            unset($_SESSION['wrong_info']);
+                        ?>
+                        <input class="grad-btn" type="submit" value="Войти">
                     </form>
+                    </div>
                 </div>
             </div>
         </main>
