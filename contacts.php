@@ -1,3 +1,7 @@
+<?php
+    require_once("src/scripts/php/database.php");
+    require_once("src/scripts/php/functions.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,16 +76,44 @@
                     </div>
                 </div>
                 
-                <div class="category">
+                <div class="category after-category">
                     <h1>Модерация</h1>
-                    <select name="kafedra" id="kaf">
+                    <!-- <select name="kafedra" id="kaf">
                         <option value="default">КАФЕДРА</option>
                         <option value="asoiu">Автоматизированные системы обработки информации и управления</option>
                         <option value="other">Другая</option>
-                    </select>
-                    <div class="card-container">
+                    </select> -->
+                    <!-- <div class="card-container"> -->
                         <!-- СЮДА ДОБАВЛЯТЬ КОНТАКТЫ СОТРУДНИКОВ КАФЕДРЫ -->
-                    </div>
+                    <!-- </div> -->
+                    <table class="table_sort" id="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Фамилия Имя Отчество</th>
+                                <th>Эл. почта</th>
+                                <th>Телефон</th>
+                                <th>Аудитория</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- СЮДА ДОБАВЛЯТЬ ПРЕПОДАВАТЕЛЕЙ ИЗ БАЗЫ ДАННЫХ -->
+                            <?php 
+                                $admins = get_admins($link);
+                                foreach($admins as $a):
+                            ?>
+                            <tr>
+                                <td><?=$a['id_admin'] ?></td>
+                                <td><?=$a['last_name']." ".$a['first_name']." ".$a['patronymic'] ?></td>
+                                <td><?=$a['email'] ?></td>
+                                <td><?=$a['phone'] ?></td>
+                                <td><?=$a['office'] ?></td>
+                            </tr>
+                            <?php
+                                endforeach;
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div></div>

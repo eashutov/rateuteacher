@@ -1,3 +1,6 @@
+<?php 
+    session_status() === PHP_SESSION_ACTIVE ?: session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,46 +46,34 @@
         <!-- MAIN -->
 
 
-        <main class="main-grid-type vh">
-            <div></div>
-            <div class="grid-type-container">
-                <div class="category">
-                    <h1>Рейтинг преподавателей</h1>
-                    <div class="scroll-table">
-                        <table class="table_sort" id="head">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Фамилия Имя Отчество</th>
-                                    <th>Дисциплина</th>
-                                    <th>Кафедра</th>
-                                    <th>Стаж (лет)</th>
-                                    <th>Рейтинг (текущий)</th>
-                                    <th>Рейтинг (общий)</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <div class="scroll-table-body">
-                            <table class="table_sort" id="body">
-                                <tbody>
-                                    <!-- СЮДА ДОБАВЛЯТЬ ПРЕПОДАВАТЕЛЕЙ ИЗ БАЗЫ ДАННЫХ -->
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Анатольев Александр Геннадьевич</td>
-                                        <td>Веб-программирование</td>
-                                        <td>АСОИУ</td>
-                                        <td>17</td>
-                                        <td>4.7</td>
-                                        <td>4.8</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+        <main class="main-flex-type">
+            <div class="code-window">
+                <div class="logo-text">
+                    RateUTeacher
+                </div>
+                <div class="form">
+                    <div class="question">
+                    <h3>АВТОРИЗАЦИЯ</h3>
+                    <form action="src/scripts/php/login.php" method="post" class="form-input">
+                        <div class="add-input">
+                            <p><strong>Логин:</strong></p><input class="default-input" type="text" name="login" autocomplete="off">
+                            <p><strong>Пароль:</strong></p><input class="default-input" type="password" name="password" autocomplete="off">
                         </div>
+                        
+                        
+                        <!-- Какая-то хуйня с предупреждением, потому что через style.css ничего не меняется -->
+                        <!-- пока обернул в h3 -->
+                        <?php
+                            if(isset($_SESSION['wrong_info'])) {
+                                echo "<div class='warn-c'><kbd class='warn'>".$_SESSION['wrong_info']."</kbd></div>";
+                            }
+                            unset($_SESSION['wrong_info']);
+                        ?>
+                        <input class="grad-btn" type="submit" value="Войти">
+                    </form>
                     </div>
                 </div>
             </div>
-            <div></div>
         </main>
 
 
@@ -90,7 +81,7 @@
 
 
         <footer class="site-footer">
-            <div class="dev-contacts">
+            <div class="dev-contacts">                
                 <p>8-800-555-35-35</p>
                 <p>egorkamaxwell@yandex.ru</p>
             </div>
@@ -106,6 +97,6 @@
         </footer>
     
     </div>
-    <script src="src/scripts/sort.js"></script>
+    <script src="src/scripts/pattern.js"></script>
 </body>
 </html>

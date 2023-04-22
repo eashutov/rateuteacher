@@ -53,7 +53,7 @@
                         <div class="input-container">
                             <input type="text" class="code-input" id="code" placeholder="Введите код опроса" required>
                             <label for="code" class="label">Код опроса</label>
-                            <button type="submit" id="btn">Начать опрос</button>
+                            <button class="grad-btn" type="submit" id="btn">Начать опрос</button>
                         </div>
                     </form>
                 </div>

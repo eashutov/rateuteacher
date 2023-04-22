@@ -43,12 +43,15 @@
         <!-- MAIN -->
 
 
-        <main class="main-grid-type vh">
-            <div></div>
-            <div class="grid-type-container">
-                
+        <main class="main-flex-type">
+            <div class="code-window">
+                <div class="logo-text">
+                    RateUTeacher
+                </div>
+                <h2>Спасибо за участие в опросе!</h2>
+                <a href="http://localhost/rateuteacher/">Вернуться на главную</a>
+                <a href="http://localhost/rateuteacher/ratings.php">Посмотреть текущие рейтинги</a>
             </div>
-            <div></div>
         </main>
 
 
@@ -56,7 +59,7 @@
 
 
         <footer class="site-footer">
-            <div class="dev-contacts">
+            <div class="dev-contacts">                
                 <p>8-800-555-35-35</p>
                 <p>egorkamaxwell@yandex.ru</p>
             </div>
@@ -72,6 +75,6 @@
         </footer>
     
     </div>
-    <script src="src/scripts/sort.js"></script>
+    <script src="src/scripts/pattern.js"></script>
 </body>
 </html>
