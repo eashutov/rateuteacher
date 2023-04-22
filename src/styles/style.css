@@ -702,6 +702,10 @@ thead th:nth-child(8) {
     border: none;
 }
 
+.abc {
+    height: 20px;
+}
+
 th.sorted[data-order="1"],
 th.sorted[data-order="-1"] {
     position: relative;
@@ -786,4 +790,32 @@ PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE 
     display: grid;
     grid-template-columns: 1fr 4fr;
     gap: 10px;
+}
+
+
+/* 
+ЭТИ СТИЛИ ЛУЧШЕ ПОМЕНЯТЬ, ВРЕМЕННЫЕ РЕШЕНИЯ (НАЗВАНИЯ ОСТАВИТЬ)
+*/
+.exit {
+    padding: 10px;
+    border: 1px solid black;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+.warn-c {
+    width: 100%;
+    text-align: center;
+}
+.warn {
+    color: red;
+    font-size: 16px;
+    width: 100%;
+    
+}
+#year {
+    font-family: 'Montserrat';
+    border: none;
+    outline: none;
+    font-weight: 700;
 }
