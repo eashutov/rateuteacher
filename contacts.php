@@ -1,3 +1,7 @@
+<?php
+    require_once("src/scripts/php/database.php");
+    require_once("src/scripts/php/functions.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,13 +98,20 @@
                         </thead>
                         <tbody>
                             <!-- СЮДА ДОБАВЛЯТЬ ПРЕПОДАВАТЕЛЕЙ ИЗ БАЗЫ ДАННЫХ -->
+                            <?php 
+                                $admins = get_admins($link);
+                                foreach($admins as $a):
+                            ?>
                             <tr>
-                                <td>1</td>
-                                <td>Фамилия Имя Отчество</td>
-                                <td>test@asoiu.ru</td>
-                                <td>8 (999) 999-99-99</td>
-                                <td>8-210</td>
+                                <td><?=$a['id_admin'] ?></td>
+                                <td><?=$a['last_name']." ".$a['first_name']." ".$a['patronymic'] ?></td>
+                                <td><?=$a['email'] ?></td>
+                                <td><?=$a['phone'] ?></td>
+                                <td><?=$a['office'] ?></td>
                             </tr>
+                            <?php
+                                endforeach;
+                            ?>
                         </tbody>
                     </table>
                 </div>
