@@ -1,3 +1,9 @@
+<?php 
+    session_status() === PHP_SESSION_ACTIVE ?: session_start();
+    require_once('src/scripts/php/database.php');
+    require_once('src/scripts/php/functions.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,9 +54,12 @@
             <div class="grid-type-container">
                 <div class="category after-category">
                     <h1>Рейтинг преподавателей</h1>
+                    <!-- <FORM>ПРОСМОТРЕТЬ РЕЙТИНГ ПРЕПОДАВАТЕЛЕЙ ЗА <INPUT/SELECT> ГОД <SUBMIT></FORM> -->
+                    <!-- ACTION: ЗАДАТЬ SESSION ЗНАЧЕНИЕ ГОДА И РЕДИРЕКТНУТЬ НА РЕЙТИНГИ -->
+                    <!-- if(!isset(SESSION)) { $year = date() } else { $year = SESSION } -->
                     <table class="table_sort">
                         <thead>
-                            <tr>
+                            <!-- <tr>
                                 <th>ID</th>
                                 <th>Фамилия Имя Отчество</th>
                                 <th>Дисциплина</th>
@@ -58,10 +67,68 @@
                                 <th>Стаж (лет)</th>
                                 <th>Рейтинг (текущий)</th>
                                 <th>Рейтинг (общий)</th>
+                            </tr> -->
+                            <tr>
+                                <th rowspan="2">ID</th>
+                                <th rowspan="2">Фамилия Имя Отчество</th>
+                                <th rowspan="2">Дисциплина</th>
+                                <th rowspan="2">Кафедра</th>
+                                <th rowspan="2">Стаж (лет)</th>
+                                <!-- <th colspan="3">Рейтинг (Текущий)</th> -->
+                                <th colspan="3">
+                                    Рейтинг
+                                    <form action="src/scripts/php/select_year.php" method="post">
+                                        <select name="year" id="year" onchange="this.form.submit()">
+                                            <?php 
+                                                if(!isset($_SESSION['year'])) {
+                                                    $year = date("Y"); 
+                                                } else {
+                                                    $year = $_SESSION['year'];
+                                                }
+                                            ?>
+                                            <option value="<?=$year ?>"><?=$year ?></option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <?php
+                                                $years = get_years($link);
+                                                foreach($years as $y):
+                                            ?>
+                                            <option value="<?=$y ?>"><?=$y ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </form>
+                                </th>
+                                <th colspan="3">Рейтинг (общий)</th>
+                            </tr>
+                            <tr>
+                                <th>А</th>
+                                <th>Б</th>
+                                <th>В</th>
+                                <th>А</th>
+                                <th>Б</th>
+                                <th>В</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- СЮДА ДОБАВЛЯТЬ ПРЕПОДАВАТЕЛЕЙ ИЗ БАЗЫ ДАННЫХ -->
+                            <?php 
+                                $ratings = get_ratings($link, $year);
+                            ?>
+                            <?php foreach($ratings as $r): ?>
+                                <tr>
+                                    <td><?=$r['id_teacher'] ?></td>
+                                    <td><?=$r['last_name']." ".$r['first_name']." ".$r['patronymic'] ?></td>
+                                    <td><?=$r['discipline'] ?></td>
+                                    <td><?=$r['department'] ?></td>
+                                    <td><?=$r['experience'] ?></td>
+                                    <td><?=$r['a_year'] ?></td>
+                                    <td><?=$r['b_year'] ?></td>
+                                    <td><?=$r['c_year'] ?></td>
+                                    <td><?=$r['a_full'] ?></td>
+                                    <td><?=$r['b_full'] ?></td>
+                                    <td><?=$r['c_full'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                             <tr>
                                 <td>1</td>
                                 <td>Анатольев Александр Геннадьевич</td>
@@ -69,6 +136,10 @@
                                 <td>АСОИУ</td>
                                 <td>17</td>
                                 <td>4.7</td>
+                                <td>4.8</td>
+                                <td>4.8</td>
+                                <td>4.8</td>
+                                <td>4.8</td>
                                 <td>4.8</td>
                             </tr>
                         </tbody>
