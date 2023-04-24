@@ -111,6 +111,26 @@
                         <input id="profile-change" class="grad-btn" type="submit" value="Применить изменения">
                     </form>
                 </div>
+                <div class="category" <?php if($_SESSION['id_admin']['role'] != 2) { echo "hidden"; }?>>
+                    <h1>Администрирование</h1>
+                    <div class="question">
+                        <h3>ЗАРЕГИСТРИРОВАТЬ МОДЕРАТОРА</h3>
+                        <form action="src/scripts/php/add_moderator.php" method="post">
+                            <div class="add-input">
+                                <p><strong>Фамилия:</strong></p><input class="default-input" type="text" name="last_name" autocomplete="off" required>
+                                <p><strong>Имя:</strong></p><input class="default-input" type="text" name="first_name" autocomplete="off" required>
+                                <p><strong>Отчество:</strong></p><input class="default-input" type="text" name="patronymic" autocomplete="off" required>
+                                <p><strong>Кафедра:</strong></p><input class="default-input" type="text" name="department" autocomplete="off" required>
+                                <p><strong>Аудитория:</strong></p><input class="default-input" type="text" name="office" autocomplete="off" required>
+                                <p><strong>Электронная почта:</strong></p><input class="default-input" type="email" name="email" autocomplete="off" required> 
+                                <p><strong>Номер телефона:</strong></p><input class="default-input" type="text" name="phone" autocomplete="off" required>
+                                <p><strong>Логин:</strong></p><input class="default-input" type="text" name="login" autocomplete="off" minlength="6" maxlength="25" required>
+                                <p><strong>Пароль:</strong></p><input class="default-input" type="text" name="password" autocomplete="off" minlength="6" maxlength="25" required>
+                            </div>
+                            <input class="grad-btn" type="submit" value="Зарегистрировать модератора">
+                        </form>
+                    </div>
+                </div>
                 <div class="category after-category">
                     <h1>Модерирование</h1>
                     <div class="question">
@@ -140,27 +160,10 @@
                                     <option value="<?=$t['id_teacher'] ?>"><?php echo $t['last_name']." ".$t['first_name']." ".$t['patronymic'].", ".$t['discipline'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
-                                <p><strong>Группа:</strong></p><input class="default-input" type="text" name="study_group" autocomplete="off">
-                                <p><strong>Количество использований:</strong></p><input class="default-input" type="number" name="usages" min="0">
+                                <p><strong>Группа:</strong></p><input class="default-input" type="text" name="study_group" autocomplete="off" required>
+                                <p><strong>Количество использований:</strong></p><input class="default-input" type="number" name="usages" min="0" required>
                             </div>
                             <input class="grad-btn" type="submit" value="Создать опросы">
-                        </form>
-                    </div>
-                    <div class="question">
-                        <h3>ЗАРЕГИСТРИРОВАТЬ МОДЕРАТОРА</h3>
-                        <form action="src/scripts/php/add_moderator.php" method="post">
-                            <div class="add-input">
-                                <p><strong>Фамилия:</strong></p><input class="default-input" type="text" name="last_name" autocomplete="off" required>
-                                <p><strong>Имя:</strong></p><input class="default-input" type="text" name="first_name" autocomplete="off" required>
-                                <p><strong>Отчество:</strong></p><input class="default-input" type="text" name="patronymic" autocomplete="off" required>
-                                <p><strong>Кафедра:</strong></p><input class="default-input" type="text" name="department" autocomplete="off" required>
-                                <p><strong>Аудитория:</strong></p><input class="default-input" type="text" name="office" autocomplete="off" required>
-                                <p><strong>Электронная почта:</strong></p><input class="default-input" type="email" name="email" autocomplete="off" required> 
-                                <p><strong>Номер телефона:</strong></p><input class="default-input" type="text" name="phone" autocomplete="off" required>
-                                <p><strong>Логин:</strong></p><input class="default-input" type="text" name="login" autocomplete="off" minlength="6" maxlength="25" required>
-                                <p><strong>Пароль:</strong></p><input class="default-input" type="text" name="password" autocomplete="off" minlength="6" maxlength="25" required>
-                            </div>
-                            <input class="grad-btn" type="submit" value="Зарегистрировать модератора">
                         </form>
                     </div>
                 </div>
