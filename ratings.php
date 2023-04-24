@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RateUTeacher</title>
     <link rel="stylesheet" href="src/styles/style.css">
-    <!-- <script src="src/script.js"></script> -->
 </head>
 <body>
     <div class="wrapper">
@@ -54,27 +53,14 @@
             <div class="grid-type-container">
                 <div class="category after-category">
                     <h1>Рейтинг преподавателей</h1>
-                    <!-- <FORM>ПРОСМОТРЕТЬ РЕЙТИНГ ПРЕПОДАВАТЕЛЕЙ ЗА <INPUT/SELECT> ГОД <SUBMIT></FORM> -->
-                    <!-- ACTION: ЗАДАТЬ SESSION ЗНАЧЕНИЕ ГОДА И РЕДИРЕКТНУТЬ НА РЕЙТИНГИ -->
-                    <!-- if(!isset(SESSION)) { $year = date() } else { $year = SESSION } -->
                     <table class="table_sort">
                         <thead>
-                            <!-- <tr>
-                                <th>ID</th>
-                                <th>Фамилия Имя Отчество</th>
-                                <th>Дисциплина</th>
-                                <th>Кафедра</th>
-                                <th>Стаж (лет)</th>
-                                <th>Рейтинг (текущий)</th>
-                                <th>Рейтинг (общий)</th>
-                            </tr> -->
                             <tr>
                                 <th rowspan="2">ID</th>
                                 <th rowspan="2">Фамилия Имя Отчество</th>
                                 <th rowspan="2">Дисциплина</th>
                                 <th rowspan="2">Кафедра</th>
                                 <th rowspan="2">Стаж (лет)</th>
-                                <!-- <th colspan="3">Рейтинг (Текущий)</th> -->
                                 <th colspan="3">
                                     Рейтинг
                                     <form action="src/scripts/php/select_year.php" method="post">
@@ -127,19 +113,6 @@
                                     <td><?=round($r['c_full'], 2) ?></td>
                                 </tr>
                             <?php endforeach; ?>
-                            <tr>
-                                <td>1</td>
-                                <td>Анатольев Александр Геннадьевич</td>
-                                <td>Веб-программирование</td>
-                                <td>АААААААААА</td>
-                                <td>17</td>
-                                <td>4.72</td>
-                                <td>4.82</td>
-                                <td>4.82</td>
-                                <td>4.82</td>
-                                <td>4.82</td>
-                                <td>4.82</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
