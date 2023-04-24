@@ -17,7 +17,7 @@ if (!$result) {
     die("Произошла ошибка при выполнении запроса");
 }
 $id_person = mysqli_insert_id($link);
-$sql = "INSERT INTO `admin` VALUES (NULL,'".$id_person."','".$login."','".$password."','".$office."','".$email."','".$phone."');";
+$sql = "INSERT INTO `admin` VALUES (NULL,'".$id_person."','".$role."','".$login."','".$password."','".$office."','".$email."','".$phone."');";
 $result = mysqli_query($link, $sql);
 if (!$result) {
     die("Произошла ошибка при выполнении запроса");

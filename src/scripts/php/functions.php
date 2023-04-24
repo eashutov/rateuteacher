@@ -51,7 +51,7 @@ function get_person($link) {
             FROM `admin`
             INNER JOIN `person`
             ON admin.id_person=person.id_person
-            WHERE admin.id_admin='".$_SESSION['id_admin']."';";
+            WHERE admin.id_admin='".$_SESSION['id_admin']['id']."';";
     $result = mysqli_query($link, $sql);
     if(!$result) {
         die("Произошла ошибка при выполнении запроса"); 
