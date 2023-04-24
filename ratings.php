@@ -86,14 +86,12 @@
                                                     $year = $_SESSION['year'];
                                                 }
                                             ?>
-                                            <option value="<?=$year ?>"><?=$year ?></option>
-                                            <option value="2024">2024</option>
-                                            <option value="2025">2025</option>
+                                            <option value="<?=$year; ?>"><?=$year; ?></option>
                                             <?php
                                                 $years = get_years($link);
                                                 foreach($years as $y):
                                             ?>
-                                            <option value="<?=$y ?>"><?=$y ?></option>
+                                            <option value="<?=$y['year']; ?>"><?=$y['year']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </form>
@@ -121,26 +119,26 @@
                                     <td><?=$r['discipline'] ?></td>
                                     <td><?=$r['department'] ?></td>
                                     <td><?=$r['experience'] ?></td>
-                                    <td><?=$r['a_year'] ?></td>
-                                    <td><?=$r['b_year'] ?></td>
-                                    <td><?=$r['c_year'] ?></td>
-                                    <td><?=$r['a_full'] ?></td>
-                                    <td><?=$r['b_full'] ?></td>
-                                    <td><?=$r['c_full'] ?></td>
+                                    <td><?=round($r['a_year'], 2) ?></td>
+                                    <td><?=round($r['b_year'], 2) ?></td>
+                                    <td><?=round($r['c_year'], 2) ?></td>
+                                    <td><?=round($r['a_full'], 2) ?></td>
+                                    <td><?=round($r['b_full'], 2) ?></td>
+                                    <td><?=round($r['c_full'], 2) ?></td>
                                 </tr>
                             <?php endforeach; ?>
                             <tr>
                                 <td>1</td>
                                 <td>Анатольев Александр Геннадьевич</td>
                                 <td>Веб-программирование</td>
-                                <td>АСОИУ</td>
+                                <td>АААААААААА</td>
                                 <td>17</td>
-                                <td>4.7</td>
-                                <td>4.8</td>
-                                <td>4.8</td>
-                                <td>4.8</td>
-                                <td>4.8</td>
-                                <td>4.8</td>
+                                <td>4.72</td>
+                                <td>4.82</td>
+                                <td>4.82</td>
+                                <td>4.82</td>
+                                <td>4.82</td>
+                                <td>4.82</td>
                             </tr>
                         </tbody>
                     </table>
