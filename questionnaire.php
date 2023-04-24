@@ -1,3 +1,16 @@
+<?php
+    session_status() === PHP_SESSION_ACTIVE ?: session_start();
+    if(!isset($_SESSION['q_info'])) {
+        echo "<kbd>";
+        echo "Access denied <br>";
+        echo "<a href='http://localhost/rateuteacher/index.php'>Return</a>";
+        echo "</kbd>";
+        exit();
+    } else {
+        $q_info = $_SESSION['q_info'];
+        unset($_SESSION['q_info']);
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +19,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RateUTeacher</title>
     <link rel="stylesheet" href="src/styles/style.css">
-    <!-- <script src="src/script.js"></script> -->
 </head>
 <body>
     <div class="wrapper">
@@ -48,14 +60,15 @@
             <div class="grid-type-container">
                 <div class="qnaire-info">
                     <h1>Информация об опросе</h1>
-                    <p>Действителен до #</p>
-                    <p>Группа: #</p>
-                    <p>Преподаватель: #</p>
-                    <p>Кафедра: #</p>
+                    <p>Действителен до: <?=date('Y-m-d', strtotime("+14 day", strtotime($q_info['0']['creation_date']))); ?></p>
+                    <p>Группа: <?=$q_info['0']['study_group']; ?></p>
+                    <p>Преподаватель: <?=$q_info['0']['last_name']." ".$q_info['0']['first_name']." ".$q_info['0']['patronymic']; ?></p>
+                    <p>Дисциплина: <?=$q_info['0']['discipline'] ?></p>
+                    <p>Кафедра: <?=$q_info['0']['department']; ?></p>
                     <p class="question">Ответы на предложенные вопросы необходимы для дальнейшего улучшения образовательного процесса, они дадут возможность обратной связи с Вашими преподавателями. 
                         Заполнение этого опросного листа является анонимным. Оценка проводится по 5-балльной шкале. Все поля обязательны к заполнению.</p>
                 </div>
-                <form action="src/scripts/php/test.php" method="post">
+                <form action="src/scripts/php/save_results.php" method="post">
                     <div class="category">
                         <h1>Информированность студента</h1>
                         <div class="question">
@@ -420,6 +433,8 @@
                     <div class="end-qnaire">
                         <!-- <input type="reset" value="Отменить"> -->
                         <!-- <input type="submit" value="Отправить"> -->
+                        <input type="hidden" name="code" value="<?=$q_info['0']['code']; ?>">
+                        <input type="hidden" name="id_questionnaire" value="<?=$q_info['0']['id_questionnaire']; ?>">
                         <div class="tooltip">
                             <input type="reset" value="Отменить">
                             <span class="tooltiptext">Удалить все введенные данные</span>

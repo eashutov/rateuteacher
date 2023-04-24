@@ -1,3 +1,6 @@
+<?php
+    session_status() === PHP_SESSION_ACTIVE ?: session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +18,7 @@
         <!-- HEADER -->
 
 
-        <header class="site-header">
+        <!-- <header class="site-header">
             <div class="site-search">
                 <form action="" method="GET" class="search-bar">
                     <input id="search" type="search" placeholder="Поиск по сайту" name="q" autocomplete="off">
@@ -34,10 +37,11 @@
             </nav>
             <div class="site-sign">
                 <div class="hover">
-                    <a href="#" class="sign"><img src="src/images/sign.svg" alt="sign" width="20px" height="20px" /></a>
+                    <a href="profile.php" class="sign"><img src="src/images/sign.svg" alt="sign" width="20px" height="20px" /></a>
                 </div>
             </div>
-        </header>
+        </header> -->
+        <?php include("src/app/header.php"); ?>
         
 
         <!-- MAIN -->
@@ -49,10 +53,16 @@
                     RateUTeacher
                 </div>
                 <div class="form">
-                    <form action="#" method="get" class="form-input">
+                    <form action="src/scripts/php/check_code.php" method="post" class="form-input">
                         <div class="input-container">
-                            <input type="text" class="code-input" id="code" placeholder="Введите код опроса" required>
+                            <input type="text" name="code" class="code-input" id="code" placeholder="Введите код опроса" required>
                             <label for="code" class="label">Код опроса</label>
+                            <?php
+                                if(isset($_SESSION['wrong_code'])) {
+                                    echo "<div class='warn-c'><kbd class='warn'>".$_SESSION['wrong_code']."</kbd></div>";
+                                }
+                                unset($_SESSION['wrong_code']);
+                            ?>
                             <button class="grad-btn" type="submit" id="btn">Начать опрос</button>
                         </div>
                     </form>
@@ -64,7 +74,7 @@
         <!-- FOOTER -->
 
 
-        <footer class="site-footer">
+        <!-- <footer class="site-footer">
             <div class="dev-contacts">                
                 <p>8-800-555-35-35</p>
                 <p>egorkamaxwell@yandex.ru</p>
@@ -78,7 +88,8 @@
                 <a href="https://omgtu.ru/"><img src="src/images/omstu-logo.svg" alt="OmSTU"></a>
                 <a href="#"><img src="src/images/vk_logo.svg" alt="VK"></a>
             </div>
-        </footer>
+        </footer> -->
+        <?php include("src/app/footer.php") ?>
     
     </div>
     <script src="src/scripts/pattern.js"></script>
