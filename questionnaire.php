@@ -19,11 +19,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RateUTeacher</title>
     <link rel="stylesheet" href="src/styles/style.css">
+    <script src="src/scripts/modal.js" defer></script>
+    <script src="src/scripts/btnup.js" defer></script>
+    <script src="src/scripts/validation.js" defer></script>
 </head>
 <body>
     <div class="wrapper">
 
         <?php include("src/app/header.php"); ?>
+
+        <dialog class="dialog" id="modal">
+            <h1>Предупреждение</h1>
+            <p>При старте опроса не закрывайте вкладку, не обновляйте страницу и не переходите на другие разделы сайта, в противном случае выбранные ответы не сохранятся.</p>
+            <p>Поэтому советуем заранее настроить и проверить интернет соединение, выбрать подходящее место и выделить необходимое количество времени на прохождение опроса.</p>
+            <button id="modal-btn" onclick="window['modal'].close()" disabled>10</button>
+        </dialog>
 
         <main class="main-grid-type">
             <div></div>
@@ -424,8 +434,5 @@
         <?php include("src/app/footer.php") ?>
 
     </div>
-
-    <script src="src/scripts/btnup.js"></script>
-    <script src="src/scripts/validation.js"></script>
 </body>
 </html>
