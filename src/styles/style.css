@@ -413,7 +413,7 @@ h1 {
     margin: 15px 0 35px 0;
 }
 
-.end-qnaire input {
+.end-qnaire input, #modal-btn {
     padding: 5px 20%;
     margin: 0;
     width: 100%;
@@ -431,12 +431,12 @@ h1 {
     cursor: pointer;
 }
 
-.end-qnaire input:disabled {
+.end-qnaire input:disabled, #modal-btn:disabled {
     background: linear-gradient(to right, #999, #666);
     background-size: 200% 100%;    
 }
 
-.end-qnaire input:hover {
+.end-qnaire input:hover, #modal-btn:hover {
     animation: gradient-animation 3s ease infinite;
 }
 
@@ -452,6 +452,29 @@ h1 {
     100% {
         background-position: 0 0;
     }
+}
+
+.dialog {
+    width: 550px;
+    border: 4px solid transparent;
+    border-image: linear-gradient(to right, var(--primary), var(--secondary));
+    border-image-slice: 1;
+    margin: auto;
+    padding: 15px;
+}
+
+.dialog h1 {
+    width: auto;
+}
+
+.dialog::backdrop {
+    background-color: rgb(255 255 255 / 0.3);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+.dialog p {
+    margin: 0.2em 0 1.5em;
+    font-size: 16px;
 }
 
 strong {
@@ -697,11 +720,6 @@ tbody td:nth-child(7) {
     width: 11%;
 }
 
-thead th:nth-child(8) {
-    width: 12.5px;
-    border: none;
-}
-
 .abc {
     height: 20px;
 }
@@ -792,6 +810,13 @@ PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE 
     gap: 10px;
 }
 
+#year {
+    font-family: 'Montserrat';
+    border: none;
+    outline: none;
+    font-weight: 700;
+    font-size: 16px;
+}
 
 /* 
 ЭТИ СТИЛИ ЛУЧШЕ ПОМЕНЯТЬ, ВРЕМЕННЫЕ РЕШЕНИЯ (НАЗВАНИЯ ОСТАВИТЬ)
@@ -812,11 +837,4 @@ PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE 
     font-size: 16px;
     width: 100%;
     
-}
-#year {
-    font-family: 'Montserrat';
-    border: none;
-    outline: none;
-    font-weight: 700;
-    font-size: 16px;
 }
