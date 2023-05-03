@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RateUTeacher</title>
     <link rel="stylesheet" href="src/styles/style.css">
+    <script src="src/scripts/sort.js" defer></script>
 </head>
 <body>
     <div class="wrapper">
@@ -22,26 +23,23 @@
                 <div class="category">
                     <h1>Администрация</h1>
                     <div class="card-container">
+                        <?php
+                            $admins = get_admins($link);
+                            foreach($admins as $a):
+                        ?>
                         <div class="card">
                             <div class="card-info">
-                                <h1 class="card-name">ФАМИЛИЯ<br>ИМЯ<br>ОТЧЕСТВО</h1>
-                                <p><strong>КАФЕДРА:</strong>АСОИУ</p>
-                                <p><strong>АУДИТОРИЯ:</strong>8-220</p>
-                                <p><strong>ЭЛЕКТРОННАЯ&nbsp;ПОЧТА:</strong><br>test@mail.ru</p>
-                                <p><strong>ТЕЛЕФОН:</strong>+7 (999) 999-99-99</p>
+                                <h1 class="card-name"><?=$a['last_name']; ?><br><?=$a['first_name']; ?><br><?=$a['patronymic']; ?></h1>
+                                <p><strong>КАФЕДРА:</strong><?=$a['department']; ?></p>
+                                <p><strong>АУДИТОРИЯ:</strong><?=$a['office']; ?></p>
+                                <p><strong>ЭЛЕКТРОННАЯ&nbsp;ПОЧТА:</strong><br><?=$a['email']; ?></p>
+                                <p><strong>ТЕЛЕФОН:</strong><?=$a['phone']; ?></p>
                             </div>
-                            <img src="src/images/default_avatar.png" alt="photo">
+                            <img src="<?=$a['photo']; ?>" alt="photo">
                         </div>
-                        <div class="card">
-                            <div class="card-info">
-                                <h1 class="card-name">ФАМИЛИЯ<br>ИМЯ<br>ОТЧЕСТВО</h1>
-                                <p><strong>КАФЕДРА:</strong>АСОИУ</p>
-                                <p><strong>АУДИТОРИЯ:</strong>8-220</p>
-                                <p><strong>ЭЛЕКТРОННАЯ&nbsp;ПОЧТА:</strong><br>test@gmail.com</p>
-                                <p><strong>ТЕЛЕФОН:</strong>+7 (999) 999-99-99</p>
-                            </div>
-                            <img src="src/images/default_avatar.png" alt="photo">
-                        </div>
+                        <?php
+                            endforeach;
+                        ?>
                     </div>
                 </div>
                 
@@ -60,15 +58,15 @@
                         <tbody>
                             <!-- СЮДА ДОБАВЛЯТЬ ПРЕПОДАВАТЕЛЕЙ ИЗ БАЗЫ ДАННЫХ -->
                             <?php 
-                                $admins = get_admins($link);
-                                foreach($admins as $a):
+                                $moderators = get_moderators($link);
+                                foreach($moderators as $m):
                             ?>
                             <tr>
-                                <td><?=$a['id_admin'] ?></td>
-                                <td><?=$a['last_name']." ".$a['first_name']." ".$a['patronymic'] ?></td>
-                                <td><?=$a['email'] ?></td>
-                                <td><?=$a['phone'] ?></td>
-                                <td><?=$a['office'] ?></td>
+                                <td><?=$m['id_admin'] ?></td>
+                                <td><?=$m['last_name']." ".$m['first_name']." ".$m['patronymic'] ?></td>
+                                <td><?=$m['email'] ?></td>
+                                <td><?=$m['phone'] ?></td>
+                                <td><?=$m['office'] ?></td>
                             </tr>
                             <?php
                                 endforeach;
