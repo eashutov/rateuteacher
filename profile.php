@@ -106,7 +106,8 @@
                         <input id="profile-change" class="grad-btn" type="submit" value="Применить изменения">
                     </form>
                 </div>
-                <div class="category" <?php if($_SESSION['id_admin']['role'] != 2) { echo "hidden"; }?>>
+                <?php if($_SESSION['id_admin']['role'] == 2): ?>
+                <div class="category">
                     <h1>Администрирование</h1>
                     <div class="question">
                         <h3>ЗАРЕГИСТРИРОВАТЬ МОДЕРАТОРА</h3>
@@ -131,6 +132,7 @@
                         </form>
                     </div>
                 </div>
+                <?php endif; ?>
                 <div class="category after-category">
                     <h1>Модерирование</h1>
                     <div class="question">
