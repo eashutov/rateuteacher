@@ -1,25 +1,27 @@
 <?php
+session_status() === PHP_SESSION_ACTIVE ?: session_start();
 require_once("database.php");
 
-if(isset($_POST['phone'])) {
+$admin = $_SESSION['id_admin']['id'];
+if(isset($_POST['phone']) && $_POST['phone'] != "" && $_POST['phone'] != " ") {
     $phone = mysqli_real_escape_string($link, $_POST['phone']);
-    $sql = "UPDATE `admin` SET phone='".$phone."';";
+    $sql = "UPDATE `admin` SET phone='$phone' WHERE id_admin=$admin;";
     $result = mysqli_query($link, $sql);
     if (!$result) {
         die("Произошла ошибка при выполнении запроса");
     }
 }
-if(isset($_POST['email'])) {
+if(isset($_POST['email']) && $_POST['email'] != "" && $_POST['email'] != " ") {
     $email = mysqli_real_escape_string($link, $_POST['email']);
-    $sql = "UPDATE `admin` SET email='".$office."';";
+    $sql = "UPDATE `admin` SET email='$email' WHERE id_admin=$admin;";
     $result = mysqli_query($link, $sql);
     if (!$result) {
         die("Произошла ошибка при выполнении запроса");
     }
 }
-if(isset($_POST['office'])) {
+if(isset($_POST['office']) && $_POST['office'] != "" && $_POST['office'] != " ") {
     $office = mysqli_real_escape_string($link, $_POST['office']);
-    $sql = "UPDATE `admin` SET office='".$office."';";
+    $sql = "UPDATE `admin` SET office='$office' WHERE id_admin=$admin;";
     $result = mysqli_query($link, $sql);
     if (!$result) {
         die("Произошла ошибка при выполнении запроса");

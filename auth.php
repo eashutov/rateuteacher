@@ -13,7 +13,7 @@
 <body>
     <div class="wrapper">
 
-        <?php include("src/app/header.php"); ?>        
+        <?php include("src/app/header.php"); ?>
 
         <main class="main-flex-type">
             <div class="code-window">

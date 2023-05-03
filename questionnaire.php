@@ -3,7 +3,8 @@
     if(!isset($_SESSION['q_info'])) {
         echo "<kbd>";
         echo "Access denied <br>";
-        echo "<a href='http://localhost/rateuteacher/index.php'>Return</a>";
+        $ref = $_SERVER['HTTP_REFERER'];
+        echo "<a href='$ref'>Return</a>";
         echo "</kbd>";
         exit();
     } else {
@@ -127,7 +128,7 @@
                             </div>
                         </div>
                         <div class="question">
-                            <p><strong>A4</strong>С самого начала были определенны рейтинговые критерии освоения дисциплины, получения зачета и экзаменационной оценки.</p>
+                            <p><strong>A4</strong>С самого начала были определены рейтинговые критерии освоения дисциплины, получения зачета и экзаменационной оценки.</p>
                             <div class="qnaire-input-container">
                                 <div class="input-radio">
                                     <input type="radio" name="a4" value="1" id="a4-1" required>

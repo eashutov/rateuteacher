@@ -11,11 +11,12 @@ $date = date("Y-m-d H:i:s");
 $q_number = rand(1, 9999);
 $code = implode('-', [$study_group, $id_teacher, $q_number]);
 
-$sql = "INSERT INTO `questionnaire` VALUES (NULL,'".$code."','".$usages."','".$date."','".$study_group."','".$id_teacher."','".$id_admin."');";
+$sql = "INSERT INTO `questionnaire` VALUES (NULL,'$code', $usages, '$date', '$study_group', $id_teacher, $id_admin);";
 $result = mysqli_query($link, $sql);
 if (!$result) {
     die("Произошла ошибка при выполнении запроса");
 }
+$_SESSION['success'] = $code;
 
 $new_url = 'http://localhost/rateuteacher/profile.php';
 header('Location: '.$new_url);
