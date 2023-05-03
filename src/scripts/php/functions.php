@@ -61,14 +61,29 @@ function get_person($link) {
 }
 
 function get_admins($link) {
-    $sql = "SELECT person.last_name, person.first_name, person.patronymic, admin.office, admin.email, admin.phone, admin.id_admin
-            FROM `admin`
-            INNER JOIN `person`
-            ON admin.id_person=person.id_person;";
+    $sql = "SELECT person.last_name, person.first_name, person.patronymic, person.department, admin.office, admin.email, admin.phone, admin.id_admin, admin.photo 
+    FROM `admin`
+    INNER JOIN `person`
+    ON admin.id_person=person.id_person
+    WHERE admin.role=2;";
     $result = mysqli_query($link, $sql);
     if(!$result) {
         die("Произошла ошибка при выполнении запроса");
     }
     $admins = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $admins;
+}
+
+function get_moderators($link) {
+    $sql = "SELECT person.last_name, person.first_name, person.patronymic, admin.office, admin.email, admin.phone, admin.id_admin
+            FROM `admin`
+            INNER JOIN `person`
+            ON admin.id_person=person.id_person
+            WHERE admin.role=0;";
+    $result = mysqli_query($link, $sql);
+    if(!$result) {
+        die("Произошла ошибка при выполнении запроса");
+    }
+    $moderators = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $moderators;
 }

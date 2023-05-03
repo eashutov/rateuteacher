@@ -4,6 +4,16 @@
         $new_url = 'http://localhost/rateuteacher/auth.php';
         header('Location: '.$new_url);
     }
+    if(isset($_SESSION['success'])) {
+        if(($_SESSION['success'] != "Модератор") && ($_SESSION['success'] != "Преподаватель")) {
+            $code = $_SESSION['success'];
+            echo "<script>document.addEventListener('DOMContentLoaded', () => { document.getElementById('modal-q').showModal(); });</script>";
+        } else {
+            $success = $_SESSION['success'];
+            echo "<script>document.addEventListener('DOMContentLoaded', () => { document.getElementById('modal-success').showModal(); });</script>";
+        }
+        unset($_SESSION['success']);
+    }
 ?>
 <?php 
     require_once('src/scripts/php/database.php');
@@ -22,6 +32,19 @@
     <div class="wrapper">
 
         <?php include("src/app/header.php"); ?>
+
+        <dialog class="dialog" id="modal-success">
+            <h1>Успешно!</h1>
+            <p><?=$success; ?> успешно добавлен.</p>
+            <button id="modal-btn" onclick="window['modal-success'].close()">ok</button>
+        </dialog>
+        <dialog class="dialog" id="modal-q">
+            <h1>Успешно!</h1>
+            <p>Опрос успешно создан.</p>
+            <p>Сохраните код опроса: <i><?=$code; ?></i>.</p>
+            <button id="modal-btn" onclick="window['modal-q'].close()">ok</button>
+        </dialog>
+        
 
         <main class="main-grid-type">
             <div></div>
@@ -64,7 +87,9 @@
                                 <tr>
                                     <td><strong>Телефон</strong></td>
                                     <td><?=$person['0']['phone']?></td>
-                                    <td><input class="default-input" type="text" name="phone" autocomplete="off"></td>
+                                    <td><input class="default-input" type="text" name="phone" autocomplete="off" 
+                                    pattern="\+7\s?[\(]{1}9[0-9]{2}[\)]{1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
+                                    placeholder="+7(XXX)XXX-XX-XX"></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Электронная почта</strong></td>
@@ -74,14 +99,15 @@
                                 <tr>
                                     <td><strong>Аудитория</strong></td>
                                     <td><?=$person['0']['office']?></td>
-                                    <td><input class="default-input" type="text" name="office" autocomplete="off"></td>
+                                    <td><input class="default-input" type="text" name="office" autocomplete="off" pattern="[1-9]{1,2}\-[1-9]{1}[1-9]{2}"></td>
                                 </tr>
                             </tbody>
                         </table>
                         <input id="profile-change" class="grad-btn" type="submit" value="Применить изменения">
                     </form>
                 </div>
-                <div class="category" <?php if($_SESSION['id_admin']['role'] != 2) { echo "hidden"; }?>>
+                <?php if($_SESSION['id_admin']['role'] == 2): ?>
+                <div class="category">
                     <h1>Администрирование</h1>
                     <div class="question">
                         <h3>ЗАРЕГИСТРИРОВАТЬ МОДЕРАТОРА</h3>
@@ -91,9 +117,14 @@
                                 <p><strong>Имя:</strong></p><input class="default-input" type="text" name="first_name" autocomplete="off" required>
                                 <p><strong>Отчество:</strong></p><input class="default-input" type="text" name="patronymic" autocomplete="off" required>
                                 <p><strong>Кафедра:</strong></p><input class="default-input" type="text" name="department" autocomplete="off" required>
-                                <p><strong>Аудитория:</strong></p><input class="default-input" type="text" name="office" autocomplete="off" required>
+                                <p><strong>Аудитория:</strong></p><input class="default-input" type="text" name="office" autocomplete="off" 
+                                    pattern="^[1-9]{1,2}-[0-9]{3}$" 
+                                    required>
                                 <p><strong>Электронная почта:</strong></p><input class="default-input" type="email" name="email" autocomplete="off" required> 
-                                <p><strong>Номер телефона:</strong></p><input class="default-input" type="text" name="phone" autocomplete="off" required>
+                                <p><strong>Номер телефона:</strong></p><input class="default-input" type="text" name="phone" autocomplete="off" 
+                                    pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
+                                    placeholder="+7(XXX)XXX-XX-XX"
+                                    required>
                                 <p><strong>Логин:</strong></p><input class="default-input" type="text" name="login" autocomplete="off" minlength="6" maxlength="25" required>
                                 <p><strong>Пароль:</strong></p><input class="default-input" type="text" name="password" autocomplete="off" minlength="6" maxlength="25" required>
                             </div>
@@ -101,18 +132,19 @@
                         </form>
                     </div>
                 </div>
+                <?php endif; ?>
                 <div class="category after-category">
                     <h1>Модерирование</h1>
                     <div class="question">
                         <h3>ДОБАВИТЬ ПРЕПОДАВАТЕЛЯ</h3>
                         <form action="src/scripts/php/add_teacher.php" method="post">
                             <div class="add-input">
-                                <p><strong>Фамилия:</strong></p><input class="default-input" type="text" name="last_name" autocomplete="off" required>
-                                <p><strong>Имя:</strong></p><input class="default-input" type="text" name="first_name" autocomplete="off" required>
-                                <p><strong>Отчество:</strong></p><input class="default-input" type="text" name="patronymic" autocomplete="off" required>
-                                <p><strong>Кафедра:</strong></p><input class="default-input" type="text" name="department" autocomplete="off" required>
+                                <p><strong>Фамилия:</strong></p><input class="default-input" type="text" name="last_name" autocomplete="off" pattern="^[А-ЯЁ]{1}[а-яё]*$" required>
+                                <p><strong>Имя:</strong></p><input class="default-input" type="text" name="first_name" autocomplete="off" pattern="^[А-ЯЁ]{1}[а-яё]*$" required>
+                                <p><strong>Отчество:</strong></p><input class="default-input" type="text" name="patronymic" autocomplete="off" pattern="^[А-ЯЁ]{1}[а-яё]*$" required>
+                                <p><strong>Кафедра:</strong></p><input class="default-input" type="text" name="department" autocomplete="off" pattern="^[А-Яа-яЁё\s]{3,}$" required>
                                 <p><strong>Стаж:</strong></p><input class="default-input" type="number" name="experience" min="0" max="80" required>
-                                <p><strong>Дисциплина:</strong></p><input class="default-input" type="text" name="discipline" autocomplete="off" required>
+                                <p><strong>Дисциплина:</strong></p><input class="default-input" type="text" name="discipline" autocomplete="off" pattern="^[А-Яа-яЁё\s]{2,}$" required>
                             </div>
                             <input class="grad-btn" type="submit" value="Добавить преподавателя">
                         </form>
@@ -130,8 +162,10 @@
                                     <option value="<?=$t['id_teacher'] ?>"><?php echo $t['last_name']." ".$t['first_name']." ".$t['patronymic'].", ".$t['discipline'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
-                                <p><strong>Группа:</strong></p><input class="default-input" type="text" name="study_group" autocomplete="off" required>
-                                <p><strong>Количество использований:</strong></p><input class="default-input" type="number" name="usages" min="0" required>
+                                <p><strong>Группа:</strong></p><input class="default-input" type="text" name="study_group" autocomplete="off" 
+                                    pattern="^[А-Яа-яЁё]{2,5}-[0-9]{3}$" 
+                                    required>
+                                <p><strong>Количество использований:</strong></p><input class="default-input" type="number" name="usages" min="1" max="100" required>
                             </div>
                             <input class="grad-btn" type="submit" value="Создать опросы">
                         </form>

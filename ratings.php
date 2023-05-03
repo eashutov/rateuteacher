@@ -12,6 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RateUTeacher</title>
     <link rel="stylesheet" href="src/styles/style.css">
+    <script src="src/scripts/btnup.js" defer></script>
+    <script src="src/scripts/sort.js" defer></script>
 </head>
 <body>
     <div class="wrapper">
@@ -95,7 +97,5 @@
         <?php include("src/app/footer.php") ?>
     
     </div>
-    <script src="src/scripts/btnup.js"></script>
-    <script src="src/scripts/sort.js"></script>
 </body>
 </html>

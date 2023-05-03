@@ -7,7 +7,7 @@
         <p>egorkamaxwell@yandex.ru</p>
     </div>
     <div class="powered-by">
-        <h2>OmSTU, 2023</h2>
+        <h2>&copy; OmSTU, 2023</h2>
         <p>by E.A. Shutov and D.A. Polskii</p>
     </div>
     <div class="references hover">
