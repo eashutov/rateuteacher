@@ -777,6 +777,11 @@ PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE 
     width: 35%;
 }
 
+#profile-table thead th:nth-child(4),
+#profile-table tbody td:nth-child(4) {
+    width: 10%;
+}
+
 .default-input {
     font-family: 'Montserrat';
     outline: 0;
@@ -808,6 +813,35 @@ PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE 
     outline: none;
     font-weight: 700;
     font-size: 16px;
+}
+
+#codes-table {
+    margin-top: 15px;
+}
+
+#codes-table thead th:nth-child(1),
+#codes-table tbody td:nth-child(1) {
+    width: 3%;
+}
+
+#codes-table thead th:nth-child(2),
+#codes-table tbody td:nth-child(2) {
+    width: 15%;
+}
+
+#codes-table thead th:nth-child(3),
+#codes-table tbody td:nth-child(3) {
+    width: auto;
+}
+
+#codes-table thead th:nth-child(4),
+#codes-table tbody td:nth-child(4) {
+    width: auto;
+}
+
+#codes-table thead th:nth-child(5),
+#codes-table tbody td:nth-child(5) {
+    width: 55%;
 }
 
 /* 
