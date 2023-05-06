@@ -27,6 +27,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RateUTeacher</title>
     <link rel="stylesheet" href="src/styles/style.css">
+    <script src="src/scripts/checkbox.js" defer></script>
+
 </head>
 <body>
     <div class="wrapper">
@@ -41,7 +43,7 @@
         <dialog class="dialog" id="modal-q">
             <h1>Успешно!</h1>
             <p>Опрос успешно создан.</p>
-            <p>Сохраните код опроса: <i><?=$code; ?></i>.</p>
+            <p>Сохраните код опроса: <i><?=$code; ?></i></p>
             <button id="modal-btn" onclick="window['modal-q'].close()">ok</button>
         </dialog>
         
@@ -58,6 +60,7 @@
                                     <th>Наименование</th>
                                     <th>Текущие данные</th>
                                     <th>Внести изменения</th>
+                                    <th>Скрыть</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,20 +71,24 @@
                                     <td><strong>Фамилия</strong></td>
                                     <td><?=$person['0']['last_name']?></td>
                                     <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Имя</strong></td>
                                     <td><?=$person['0']['first_name']?></td>
+                                    <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Отчество</strong></td>
                                     <td><?=$person['0']['patronymic']?></td>
                                     <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Кафедра</strong></td>
                                     <td><?=$person['0']['department']?></td>
+                                    <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
@@ -90,16 +97,19 @@
                                     <td><input class="default-input" type="text" name="phone" autocomplete="off" 
                                     pattern="\+7\s?[\(]{1}9[0-9]{2}[\)]{1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
                                     placeholder="+7(XXX)XXX-XX-XX"></td>
+                                    <td><input class="check-hide" type="checkbox" name="hide" value="2" <?php if($person['0']['hide'] == 2) { echo "checked"; } ?>></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Электронная почта</strong></td>
                                     <td><?=$person['0']['email']?></td>
                                     <td><input class="default-input" type="text" name="email" autocomplete="off"></td>
+                                    <td><input class="check-hide" type="checkbox" name="hide" value="1" <?php if($person['0']['hide'] == 1) { echo "checked"; } ?>></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Аудитория</strong></td>
                                     <td><?=$person['0']['office']?></td>
-                                    <td><input class="default-input" type="text" name="office" autocomplete="off" pattern="[1-9]{1,2}\-[1-9]{1}[1-9]{2}"></td>
+                                    <td><input class="default-input" type="text" name="office" autocomplete="off" pattern="^[1-9]{1,2}-[1-9]{1}[1-9]{2}?"></td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -170,6 +180,35 @@
                             <input class="grad-btn" type="submit" value="Создать опросы">
                         </form>
                     </div>
+                    
+                    <details class="question">
+                        <summary><strong>СПИСОК АКТИВНЫХ КОДОВ</strong></summary>
+                        <table class="table_sort" id="codes-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Код</th>
+                                    <th>Кол-во использований</th>
+                                    <th>Дата создания</th>
+                                    <th>Преподаватель, дисциплина</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                    $codes = get_codes($link);
+                                ?>
+                                <?php foreach($codes as $c): ?>
+                                <tr>
+                                    <td><?=$c['id_questionnaire']; ?></td>
+                                    <td><?=$c['code']; ?></td>
+                                    <td><?=$c['usages']; ?></td>
+                                    <td><?=$c['creation_date']; ?></td>
+                                    <td><?=$c['last_name']." ".$c['first_name']." ".$c['patronymic'].", ".$c['discipline']; ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </details>
                 </div>
             </div>
             <div>

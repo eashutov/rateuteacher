@@ -28,5 +28,17 @@ if(isset($_POST['office']) && $_POST['office'] != "" && $_POST['office'] != " ")
     }
 }
 
+// в любом случае делает запрос на обновление, даже если значение осталось тем же (возможно недоработка)
+if(isset($_POST['hide'])) {
+    $hide = $_POST['hide'];
+} else {
+    $hide = 0;
+}
+$sql = "UPDATE `admin` SET hide=$hide WHERE id_admin=$admin;";
+$result = mysqli_query($link, $sql);
+if (!$result) {
+    die("Произошла ошибка при выполнении запроса");
+}
+
 $new_url = 'http://localhost/rateuteacher/profile.php';
 header('Location: '.$new_url);

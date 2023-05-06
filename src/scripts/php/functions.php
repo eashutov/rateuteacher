@@ -47,7 +47,7 @@ function get_years($link) {
 }
 
 function get_person($link) {
-    $sql = "SELECT person.last_name, person.first_name, person.patronymic, person.department, admin.office, admin.email, admin.phone
+    $sql = "SELECT person.last_name, person.first_name, person.patronymic, person.department, admin.office, admin.email, admin.phone, admin.hide
             FROM `admin`
             INNER JOIN `person`
             ON admin.id_person=person.id_person
@@ -61,11 +61,13 @@ function get_person($link) {
 }
 
 function get_admins($link) {
-    $sql = "SELECT person.last_name, person.first_name, person.patronymic, person.department, admin.office, admin.email, admin.phone, admin.id_admin, admin.photo 
-    FROM `admin`
-    INNER JOIN `person`
-    ON admin.id_person=person.id_person
-    WHERE admin.role=2;";
+    $sql = "SELECT person.last_name, person.first_name, person.patronymic, person.department, admin.office, admin.id_admin, admin.photo,
+            CASE WHEN admin.hide=1 THEN '---' ELSE admin.email END AS email,
+            CASE WHEN admin.hide=2 THEN '---' ELSE admin.phone END AS phone
+            FROM `admin`
+            INNER JOIN `person`
+            ON admin.id_person=person.id_person
+            WHERE admin.role=2;";
     $result = mysqli_query($link, $sql);
     if(!$result) {
         die("Произошла ошибка при выполнении запроса");
@@ -75,7 +77,9 @@ function get_admins($link) {
 }
 
 function get_moderators($link) {
-    $sql = "SELECT person.last_name, person.first_name, person.patronymic, admin.office, admin.email, admin.phone, admin.id_admin
+    $sql = "SELECT person.last_name, person.first_name, person.patronymic, admin.office, admin.id_admin,
+            CASE WHEN admin.hide=1 THEN '---' ELSE admin.email END AS email,
+            CASE WHEN admin.hide=2 THEN '---' ELSE admin.phone END AS phone
             FROM `admin`
             INNER JOIN `person`
             ON admin.id_person=person.id_person
@@ -86,4 +90,18 @@ function get_moderators($link) {
     }
     $moderators = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $moderators;
+}
+
+function get_codes($link) {
+    $sql = "SELECT questionnaire.id_questionnaire, questionnaire.code, questionnaire.usages, questionnaire.creation_date, person.last_name, person.first_name, person.patronymic, teacher.discipline
+            FROM `questionnaire`
+            INNER JOIN `teacher` ON questionnaire.id_teacher=teacher.id_teacher
+            INNER JOIN `person` ON teacher.id_person=person.id_person
+            WHERE questionnaire.usages>0;";
+    $result = mysqli_query($link, $sql);
+    if(!$result) {
+        die("Произошла ошибка при выполнении запроса");
+    }
+    $codes = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $codes;
 }
