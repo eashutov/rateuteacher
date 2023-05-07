@@ -3,13 +3,13 @@ session_status() === PHP_SESSION_ACTIVE ?: session_start();
 require_once("database.php");
 
 $code = mysqli_real_escape_string($link, $_POST['code']);
-
-$sql = "SELECT questionnaire.id_questionnaire, questionnaire.creation_date, questionnaire.study_group, person.last_name, person.first_name, person.patronymic, person.department, teacher.discipline
-FROM `questionnaire`, `teacher`, `person`
-WHERE questionnaire.id_teacher=teacher.id_teacher 
-AND teacher.id_person=person.id_person
-AND questionnaire.code='$code' 
-AND questionnaire.usages>0;";
+$sql = "SELECT questionnaire.id_questionnaire, questionnaire.creation_date, questionnaire.study_group, person.last_name, person.first_name, person.patronymic, department.name, teacher.discipline
+        FROM `questionnaire`, `teacher`, `person`, `department`
+        WHERE questionnaire.id_teacher=teacher.id_teacher 
+        AND teacher.id_person=person.id_person
+        AND person.department=department.id_department
+        AND questionnaire.code='$code' 
+        AND questionnaire.usages>0;";
 
 $result = mysqli_query($link, $sql);
 if (!$result) {

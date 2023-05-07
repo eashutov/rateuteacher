@@ -413,7 +413,9 @@ h1 {
     margin: 15px 0 35px 0;
 }
 
-.end-qnaire input, #modal-btn {
+.end-qnaire input,
+#modal-btn,
+#create-moder {
     padding: 5px 20%;
     margin: 0;
     width: 100%;
@@ -431,12 +433,16 @@ h1 {
     cursor: pointer;
 }
 
-.end-qnaire input:disabled, #modal-btn:disabled {
+.end-qnaire input:disabled, 
+#modal-btn:disabled,
+#create-moder:disabled {
     background: linear-gradient(to right, #999, #666);
     background-size: 200% 100%;    
 }
 
-.end-qnaire input:hover, #modal-btn:hover {
+.end-qnaire input:hover, 
+#modal-btn:hover,
+#create-moder:hover {
     animation: gradient-animation 3s ease infinite;
 }
 

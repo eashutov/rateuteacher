@@ -5,9 +5,12 @@
         header('Location: '.$new_url);
     }
     if(isset($_SESSION['success'])) {
-        if(($_SESSION['success'] != "Модератор") && ($_SESSION['success'] != "Преподаватель")) {
+        /* Супер странный if-else, но пусть пока будет xd */
+        if(($_SESSION['success'] != "Модератор") && ($_SESSION['success'] != "Преподаватель") && ($_SESSION['success'] != "Изменено")) {
             $code = $_SESSION['success'];
             echo "<script>document.addEventListener('DOMContentLoaded', () => { document.getElementById('modal-q').showModal(); });</script>";
+        } else if ($_SESSION['success'] == "Изменено") {
+            echo "<script>document.addEventListener('DOMContentLoaded', () => { document.getElementById('modal-change').showModal(); });</script>";
         } else {
             $success = $_SESSION['success'];
             echo "<script>document.addEventListener('DOMContentLoaded', () => { document.getElementById('modal-success').showModal(); });</script>";
@@ -28,7 +31,7 @@
     <title>RateUTeacher</title>
     <link rel="stylesheet" href="src/styles/style.css">
     <script src="src/scripts/checkbox.js" defer></script>
-
+    <script src="src/scripts/login.js" defer></script>
 </head>
 <body>
     <div class="wrapper">
@@ -45,6 +48,11 @@
             <p>Опрос успешно создан.</p>
             <p>Сохраните код опроса: <i><?=$code; ?></i></p>
             <button id="modal-btn" onclick="window['modal-q'].close()">ok</button>
+        </dialog>
+        <dialog class="dialog" id="modal-change">
+            <h1>Успешно!</h1>
+            <p>Данные успешно изменены.</p>
+            <button id="modal-btn" onclick="window['modal-change'].close()">ok</button>
         </dialog>
         
 
@@ -87,7 +95,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>Кафедра</strong></td>
-                                    <td><?=$person['0']['department']?></td>
+                                    <td><?=$person['0']['name']?></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
@@ -95,20 +103,20 @@
                                     <td><strong>Телефон</strong></td>
                                     <td><?=$person['0']['phone']?></td>
                                     <td><input class="default-input" type="text" name="phone" autocomplete="off" 
-                                    pattern="\+7\s?[\(]{1}9[0-9]{2}[\)]{1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
+                                    pattern="\+7\s?[\(]{1}9[0-9]{2}[\)]{1}\s?\d{3}[-]{1}\d{2}[-]{1}\d{2}"
                                     placeholder="+7(XXX)XXX-XX-XX"></td>
-                                    <td><input class="check-hide" type="checkbox" name="hide" value="2" <?php if($person['0']['hide'] == 2) { echo "checked"; } ?>></td>
+                                    <td><input class="check-hide" type="checkbox" id="phone" name="hide" value="2" <?php if($person['0']['hide'] == 2) { echo "checked"; } ?>></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Электронная почта</strong></td>
                                     <td><?=$person['0']['email']?></td>
-                                    <td><input class="default-input" type="text" name="email" autocomplete="off"></td>
-                                    <td><input class="check-hide" type="checkbox" name="hide" value="1" <?php if($person['0']['hide'] == 1) { echo "checked"; } ?>></td>
+                                    <td><input class="default-input" type="email" name="email" autocomplete="off"></td>
+                                    <td><input class="check-hide" type="checkbox" id="email" name="hide" value="1" <?php if($person['0']['hide'] == 1) { echo "checked"; } ?>></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Аудитория</strong></td>
                                     <td><?=$person['0']['office']?></td>
-                                    <td><input class="default-input" type="text" name="office" autocomplete="off" pattern="^[1-9]{1,2}-[1-9]{1}[1-9]{2}?"></td>
+                                    <td><input class="default-input" type="text" name="office" autocomplete="off" pattern="^[Г1-9]{1}[0-9]{0,1}-[1-9]{1}[0-9]{2}?"></td>
                                     <td></td>
                                 </tr>
                             </tbody>
@@ -123,22 +131,31 @@
                         <h3>ЗАРЕГИСТРИРОВАТЬ МОДЕРАТОРА</h3>
                         <form action="src/scripts/php/add_moderator.php" method="post">
                             <div class="add-input">
-                                <p><strong>Фамилия:</strong></p><input class="default-input" type="text" name="last_name" autocomplete="off" required>
-                                <p><strong>Имя:</strong></p><input class="default-input" type="text" name="first_name" autocomplete="off" required>
-                                <p><strong>Отчество:</strong></p><input class="default-input" type="text" name="patronymic" autocomplete="off" required>
-                                <p><strong>Кафедра:</strong></p><input class="default-input" type="text" name="department" autocomplete="off" required>
+                                <p><strong>Фамилия:</strong></p><input class="default-input" type="text" name="last_name" autocomplete="off" pattern="^[А-ЯЁ]{1}[а-яё]*$" required>
+                                <p><strong>Имя:</strong></p><input class="default-input" type="text" name="first_name" autocomplete="off" pattern="^[А-ЯЁ]{1}[а-яё]*$" required>
+                                <p><strong>Отчество:</strong></p><input class="default-input" type="text" name="patronymic" autocomplete="off" pattern="^[А-ЯЁ]{1}[а-яё]*$" required>
+                                <p><strong>Кафедра:</strong></p>
+                                <select class="default-input" name="department" required>
+                                    <?php 
+                                        $departments = get_departments($link);
+                                    ?>
+                                    <?php foreach($departments as $d): ?>
+                                    <option value="<?=$d['id_department'] ?>"><?=$d['name']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                                 <p><strong>Аудитория:</strong></p><input class="default-input" type="text" name="office" autocomplete="off" 
-                                    pattern="^[1-9]{1,2}-[0-9]{3}$" 
+                                    pattern="^[Г1-9]{1}[0-9]{0,1}-[1-9]{1}[0-9]{2}?" 
                                     required>
                                 <p><strong>Электронная почта:</strong></p><input class="default-input" type="email" name="email" autocomplete="off" required> 
                                 <p><strong>Номер телефона:</strong></p><input class="default-input" type="text" name="phone" autocomplete="off" 
-                                    pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
+                                    pattern="\+7\s?[\(]{1}9[0-9]{2}[\)]{1}\s?\d{3}[-]{1}\d{2}[-]{1}\d{2}"
                                     placeholder="+7(XXX)XXX-XX-XX"
                                     required>
-                                <p><strong>Логин:</strong></p><input class="default-input" type="text" name="login" autocomplete="off" minlength="6" maxlength="25" required>
+                                <p><strong>Логин:</strong></p><input class="default-input" type="text" name="login" autocomplete="off" minlength="6" maxlength="25" pattern="^[a-zA-Z]+$" onkeyup="isTaken(this.value)" required>
                                 <p><strong>Пароль:</strong></p><input class="default-input" type="text" name="password" autocomplete="off" minlength="6" maxlength="25" required>
                             </div>
-                            <input class="grad-btn" type="submit" value="Зарегистрировать модератора">
+                            <div class='warn-c' id="login-warn" style="display: none"><kbd class='warn'>Указанный логин занят</kbd></div>
+                            <input id="create-moder" type="submit" value="Зарегистрировать модератора">
                         </form>
                     </div>
                 </div>
@@ -152,7 +169,15 @@
                                 <p><strong>Фамилия:</strong></p><input class="default-input" type="text" name="last_name" autocomplete="off" pattern="^[А-ЯЁ]{1}[а-яё]*$" required>
                                 <p><strong>Имя:</strong></p><input class="default-input" type="text" name="first_name" autocomplete="off" pattern="^[А-ЯЁ]{1}[а-яё]*$" required>
                                 <p><strong>Отчество:</strong></p><input class="default-input" type="text" name="patronymic" autocomplete="off" pattern="^[А-ЯЁ]{1}[а-яё]*$" required>
-                                <p><strong>Кафедра:</strong></p><input class="default-input" type="text" name="department" autocomplete="off" pattern="^[А-Яа-яЁё\s]{3,}$" required>
+                                <p><strong>Кафедра:</strong></p>
+                                <select class="default-input" name="department" required>
+                                    <?php 
+                                        $departments = get_departments($link);
+                                    ?>
+                                    <?php foreach($departments as $d): ?>
+                                    <option value="<?=$d['id_department'] ?>"><?=$d['name']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                                 <p><strong>Стаж:</strong></p><input class="default-input" type="number" name="experience" min="0" max="80" required>
                                 <p><strong>Дисциплина:</strong></p><input class="default-input" type="text" name="discipline" autocomplete="off" pattern="^[А-Яа-яЁё\s]{2,}$" required>
                             </div>
@@ -173,7 +198,7 @@
                                     <?php endforeach; ?>
                                 </select>
                                 <p><strong>Группа:</strong></p><input class="default-input" type="text" name="study_group" autocomplete="off" 
-                                    pattern="^[А-Яа-яЁё]{2,5}-[0-9]{3}$" 
+                                    pattern="^[А-ЯЁ]{2,5}-[1-2]{1}[0-9]{1}[1-9]{1}$" 
                                     required>
                                 <p><strong>Количество использований:</strong></p><input class="default-input" type="number" name="usages" min="1" max="100" required>
                             </div>
