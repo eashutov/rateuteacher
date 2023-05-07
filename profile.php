@@ -155,7 +155,7 @@
                                 <p><strong>Пароль:</strong></p><input class="default-input" type="text" name="password" autocomplete="off" minlength="6" maxlength="25" required>
                             </div>
                             <div class='warn-c' id="login-warn" style="display: none"><kbd class='warn'>Указанный логин занят</kbd></div>
-                            <input id="create-moder" class="grad-btn" type="submit" value="Зарегистрировать модератора">
+                            <input id="create-moder" type="submit" value="Зарегистрировать модератора">
                         </form>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
                                     <?php endforeach; ?>
                                 </select>
                                 <p><strong>Группа:</strong></p><input class="default-input" type="text" name="study_group" autocomplete="off" 
-                                    pattern="^[А-ЯЁ]{2,5}-[1-2]{1}[1-9]{1}[1-9]{1}$" 
+                                    pattern="^[А-ЯЁ]{2,5}-[1-2]{1}[0-9]{1}[1-9]{1}$" 
                                     required>
                                 <p><strong>Количество использований:</strong></p><input class="default-input" type="number" name="usages" min="1" max="100" required>
                             </div>
