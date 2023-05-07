@@ -4,7 +4,7 @@ require_once('database.php');
 
 $login = mysqli_real_escape_string($link, $_POST['login']);
 $password = md5(mysqli_real_escape_string($link, trim($_POST['password'])));
-$sql = "SELECT id_admin, role, pass FROM `admin` WHERE login='".$login."';";
+$sql = "SELECT id_admin, role, pass FROM `admin` WHERE login='$login';";
 $result = mysqli_query($link, $sql);
 
 if(!$result) {

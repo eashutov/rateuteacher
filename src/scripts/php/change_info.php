@@ -39,6 +39,7 @@ $result = mysqli_query($link, $sql);
 if (!$result) {
     die("Произошла ошибка при выполнении запроса");
 }
+$_SESSION['success'] = "Изменено";
 
 $new_url = 'http://localhost/rateuteacher/profile.php';
 header('Location: '.$new_url);

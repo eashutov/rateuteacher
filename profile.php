@@ -155,7 +155,7 @@
                                 <p><strong>Пароль:</strong></p><input class="default-input" type="text" name="password" autocomplete="off" minlength="6" maxlength="25" required>
                             </div>
                             <div class='warn-c' id="login-warn" style="display: none"><kbd class='warn'>Указанный логин занят</kbd></div>
-                            <input class="grad-btn" type="submit" value="Зарегистрировать модератора">
+                            <input id="create-moder" class="grad-btn" type="submit" value="Зарегистрировать модератора">
                         </form>
                     </div>
                 </div>
