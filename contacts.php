@@ -30,7 +30,7 @@
                         <div class="card">
                             <div class="card-info">
                                 <h1 class="card-name"><?=$a['last_name']; ?><br><?=$a['first_name']; ?><br><?=$a['patronymic']; ?></h1>
-                                <p><strong>КАФЕДРА:</strong><?=$a['department']; ?></p>
+                                <p><strong>КАФЕДРА:</strong><?=$a['name']; ?></p>
                                 <p><strong>АУДИТОРИЯ:</strong><?=$a['office']; ?></p>
                                 <p><strong>ЭЛЕКТРОННАЯ&nbsp;ПОЧТА:</strong><br><?=$a['email']; ?></p>
                                 <p><strong>ТЕЛЕФОН:</strong><?=$a['phone']; ?></p>

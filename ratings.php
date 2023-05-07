@@ -75,7 +75,7 @@
                                     <td><?=$r['id_teacher'] ?></td>
                                     <td><?=$r['last_name']." ".$r['first_name']." ".$r['patronymic'] ?></td>
                                     <td><?=$r['discipline'] ?></td>
-                                    <td><?=$r['department'] ?></td>
+                                    <td><?=$r['name'] ?></td>
                                     <td><?=$r['experience'] ?></td>
                                     <td><?=round($r['a_year'], 2) ?></td>
                                     <td><?=round($r['b_year'], 2) ?></td>

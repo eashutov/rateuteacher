@@ -15,18 +15,18 @@ function get_teachers($link) {
 }
 
 function get_ratings($link, $year) {
-
-    $sql = "SELECT teacher.id_teacher, person.last_name, person.first_name, person.patronymic, teacher.discipline, person.department, teacher.experience, 
+    $sql = "SELECT teacher.id_teacher, person.last_name, person.first_name, person.patronymic, teacher.discipline, department.name, teacher.experience, 
     AVG(CASE WHEN YEAR(rating.completion_date) = $year THEN rating.part_a ELSE 0 END) AS a_year,
     AVG(CASE WHEN YEAR(rating.completion_date) = $year THEN rating.part_b ELSE 0 END) AS b_year, 
     AVG(CASE WHEN YEAR(rating.completion_date) = $year THEN rating.part_c ELSE 0 END) AS c_year, 
     AVG(rating.part_a) AS a_full,
     AVG(rating.part_b) AS b_full,
     AVG(rating.part_c) AS c_full 
-    FROM `rating`, `questionnaire`, `teacher`, `person` 
+    FROM `rating`, `questionnaire`, `teacher`, `person`, `department` 
     WHERE rating.id_questionnaire = questionnaire.id_questionnaire 
     AND questionnaire.id_teacher = teacher.id_teacher 
     AND teacher.id_person = person.id_person 
+    AND person.department = department.id_department
     GROUP BY 1, 2, 3, 4, 5;";
     $result = mysqli_query($link, $sql);
     if(!$result) {
@@ -46,11 +46,23 @@ function get_years($link) {
     return $years;
 }
 
+function get_departments($link) {
+    $sql = "SELECT name, id_department FROM `department`;";
+    $result = mysqli_query($link, $sql);
+    if(!$result) {
+        die("Произошла ошибка при выполнении запроса"); 
+    }
+    $departments = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $departments;
+}
+
 function get_person($link) {
-    $sql = "SELECT person.last_name, person.first_name, person.patronymic, person.department, admin.office, admin.email, admin.phone, admin.hide
+    $sql = "SELECT person.last_name, person.first_name, person.patronymic, department.name, admin.office, admin.email, admin.phone, admin.hide
             FROM `admin`
             INNER JOIN `person`
             ON admin.id_person=person.id_person
+            INNER JOIN `department`
+            ON person.department=department.id_department
             WHERE admin.id_admin='".$_SESSION['id_admin']['id']."';";
     $result = mysqli_query($link, $sql);
     if(!$result) {
@@ -61,12 +73,14 @@ function get_person($link) {
 }
 
 function get_admins($link) {
-    $sql = "SELECT person.last_name, person.first_name, person.patronymic, person.department, admin.office, admin.id_admin, admin.photo,
+    $sql = "SELECT person.last_name, person.first_name, person.patronymic, department.name, admin.office, admin.id_admin, admin.photo,
             CASE WHEN admin.hide=1 THEN '---' ELSE admin.email END AS email,
             CASE WHEN admin.hide=2 THEN '---' ELSE admin.phone END AS phone
             FROM `admin`
             INNER JOIN `person`
             ON admin.id_person=person.id_person
+            INNER JOIN `department`
+            ON person.department=department.id_department
             WHERE admin.role=2;";
     $result = mysqli_query($link, $sql);
     if(!$result) {

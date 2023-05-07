@@ -5,7 +5,7 @@ require_once('database.php');
 $last_name = mysqli_real_escape_string($link, $_POST['last_name']);
 $first_name = mysqli_real_escape_string($link, $_POST['first_name']);
 $patronymic = mysqli_real_escape_string($link, $_POST['patronymic']);
-$department = mysqli_real_escape_string($link, $_POST['department']);
+$department = $_POST['department'];
 $office = mysqli_real_escape_string($link, $_POST['office']);
 $email = mysqli_real_escape_string($link, $_POST['email']);
 $phone = mysqli_real_escape_string($link, $_POST['phone']);
@@ -22,7 +22,7 @@ if (!$result) {
     die("Произошла ошибка при выполнении запроса");
 }
 if(mysqli_num_rows($result) == 0) {
-    $sql = "INSERT INTO `person` VALUES (NULL, '$last_name', '$first_name', '$patronymic', '$department');";
+    $sql = "INSERT INTO `person` VALUES (NULL, '$last_name', '$first_name', '$patronymic', $department);";
     $result = mysqli_query($link, $sql);
     if (!$result) {
         die("Произошла ошибка при выполнении запроса");
@@ -32,7 +32,7 @@ if(mysqli_num_rows($result) == 0) {
     $id_person = mysqli_fetch_all($result, MYSQLI_ASSOC)[0]['id_person'];
 }
 
-$sql = "INSERT INTO `admin` VALUES (NULL, $id_person, 0, '$login', '$password', '$office', '$email', '$phone', NULL);";
+$sql = "INSERT INTO `admin` VALUES (NULL, $id_person, 0, '$login', '$password', '$office', '$email', '$phone', NULL, 0);";
 $result = mysqli_query($link, $sql);
 if (!$result) {
     die("Произошла ошибка при выполнении запроса");
