@@ -4,7 +4,7 @@
 <footer class="site-footer">
     <div class="dev-contacts">                
         <p>8-800-555-35-35</p>
-        <p>egorkamaxwell@yandex.ru</p>
+        <p>rateuteacher@mail.ru</p>
     </div>
     <div class="powered-by">
         <h2>&copy; OmSTU, 2023</h2>
