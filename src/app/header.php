@@ -16,7 +16,7 @@
         <ul class="nav">
             <li class="hover"><a href="ratings.php">Рейтинги</a></li>
             <li class="hover"><a href="contacts.php">Контакты</a></li>
-            <li class="hover"><a href="#">Q&ampA</a></li>
+            <li class="hover"><a href="qna.php">Q&ampA</a></li>
         </ul>
     </nav>
     <div class="site-sign">
