@@ -1,4 +1,5 @@
-# Mama help me pls i'm cryin' :C
+# RateUTeacher
 
-Hello my dudes, this is RateUTeacher
-by ea shutov & da polskii
+Сайт для оценки преподавательских качеств студентами.
+
+> Запуск проекта осуществлялся на локальном сервере XAMPP.
