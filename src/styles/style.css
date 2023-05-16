@@ -54,7 +54,7 @@ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .site-header {
     display: grid;
-    grid-template-columns: 4fr 2fr 3fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     justify-items: center;
 }
@@ -69,6 +69,7 @@ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     font-weight: 600;
     display: inline-block;
     margin: 12px;
+    padding: 0 15px 0 15px;
 }
 
 .hover a::before {
