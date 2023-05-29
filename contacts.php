@@ -9,7 +9,7 @@
     <title>RateUTeacher</title>
     <script src="src/scripts/sort.js" defer></script>
 </head>
-<body>
+<body class="<?=$themeClass; ?>">
     <div class="wrapper">
 
         <?php include("src/app/header.php"); ?>

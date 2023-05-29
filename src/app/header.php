@@ -13,8 +13,11 @@
         </ul>
     </nav>
     <div class="site-sign">
+            <div class="hover">
+                <a href="javascript:toggleTheme();"><img class="icon" id="themeToggler" src="<?=$themeImage; ?>" alt="sign" width="20px" height="20px" /></a>
+            </div>
         <div class="hover">
-            <a href="profile.php" class="sign"><img src="src/images/sign.svg" alt="sign" width="20px" height="20px" /></a>
+            <a href="profile.php" class="sign"><img class="icon" src="src/images/sign.svg" alt="sign" width="20px" height="20px" /></a>
         </div>
     </div>
 </header>

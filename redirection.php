@@ -4,7 +4,7 @@
     <?php include("src/app/head.php"); ?>
     <title>RateUTeacher</title>
 </head>
-<body>
+<body class="<?=$themeClass; ?>">
     <div class="wrapper">
 
         <?php include("src/app/header.php"); ?>

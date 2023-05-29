@@ -30,7 +30,7 @@
     <script src="src/scripts/checkbox.js" defer></script>
     <script src="src/scripts/login.js" defer></script>
 </head>
-<body>
+<body class="<?=$themeClass; ?>">
     <div class="wrapper">
 
         <?php include("src/app/header.php"); ?>

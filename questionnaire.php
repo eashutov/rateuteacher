@@ -21,7 +21,7 @@
     <script src="src/scripts/btnup.js" defer></script>
     <script src="src/scripts/validation.js" defer></script>
 </head>
-<body>
+<body class="<?=$themeClass; ?>">
     <div class="wrapper">
 
         <?php include("src/app/header.php"); ?>

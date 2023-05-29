@@ -7,6 +7,57 @@
     /* ИЗМЕНИТЬ ВО ВСЕМ ФАЙЛЕ ДЛИННУЮ КОНСТРУКЦИЮ НА ПЕРЕМЕННУЮ */
 }
 
+body {
+    --text-color: black;
+    --bkg-color: white;
+    --bkg-image-color: rgba(255,255,255,0.96);
+    --bkg-image-deep: rgba(255,255,255,0.6);
+    --border-color: rgb(205,205,205);
+    --border-deep: black;
+    --bkg-backdrop: rgba(255,255,255,0.3);
+    --invert: invert(0);
+    --bkg-image: url("../images/background_cloud.png");
+}
+
+body.dark-theme {
+    --text-color: rgb(230,230,230);
+    --bkg-color: rgb(50,50,50);
+    --bkg-image-color: rgba(50,50,50,0.97);
+    --bkg-image-deep: rgba(50,50,50,0.4);
+    --border-color: rgb(100,100,100);
+    --border-deep: rgb(250,250,250);
+    --bkg-backdrop: rgba(50,50,50,0.3);
+    --invert: invert(0.9);
+    --bkg-image: url("../images/background_cloud_dark.png");
+}
+
+@media (prefers-color-scheme: dark) {
+    /* defaults to dark theme */
+    body {
+        --text-color: rgb(230,230,230);
+        --bkg-color: rgb(50,50,50);
+        --bkg-image-color: rgba(50,50,50,0.97);
+        --bkg-image-deep: rgba(50,50,50,0.4);
+        --border-color: rgb(100,100,100);
+        --border-deep: rgb(250,250,250);
+        --bkg-backdrop: rgba(50,50,50,0.3);
+        --invert: invert(0.9);
+        --bkg-image: url("../images/background_cloud_dark.png");
+    }
+
+    body.light-theme {
+        --text-color: black;
+        --bkg-color: white;
+        --bkg-image-color: rgba(255,255,255,0.96);
+        --bkg-image-deep: rgba(255,255,255,0.6);
+        --border-color: rgb(205,205,205);
+        --border-deep: black;
+        --bkg-backdrop: rgba(255,255,255,0.3);
+        --invert: invert(0);
+        --bkg-image: url("../images/background_cloud.png");
+    }
+}
+
 *, *::after, *::before {
     margin: 0;
     padding: 0;
@@ -16,7 +67,8 @@
 body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    background-image: url("../images/background_cloud.png");
+    background-image: var(--bkg-image);
+    color: var(--text-color);
 }
 
 .wrapper {
@@ -28,21 +80,21 @@ body {
 header,
 footer {
     height: 75px;
-    background-color: white;
+    background-color: var(--bkg-color);
     flex-shrink: 0;
 }
 
 header {
-    border-bottom: 1px solid rgb(206, 206, 206);
+    border-bottom: 1px solid var(--border-color);
 }
 footer {
-    border-top: 1px solid rgb(206, 206, 206);
+    border-top: 1px solid var(--border-color);
 }
 
 a {
     position: relative;
     text-decoration: none;
-    color: black;
+    color: var(--text-color);
 }
 
 
@@ -72,6 +124,13 @@ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     padding: 0 15px 0 15px;
 }
 
+.site-sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 .hover a::before {
     content: '';
     bottom: -6px;
@@ -87,13 +146,14 @@ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     width: 100%;
 }
 
+/*
 .search-bar {
     width: 100%;
     max-width: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
+    border: 1px solid var(--border-deep);
 }
 
 .search-bar input {
@@ -142,7 +202,7 @@ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     background-color: rgba(132, 189, 194, 0.1);
     border-radius: 5px;
 }
-
+*/
 
 /* 
 FOOTER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -158,6 +218,7 @@ FOOTER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     font-size: 13px;
     font-weight: 500;
     cursor: default;
+    color: var(--text-color);
 }
 
 .references {
@@ -194,7 +255,7 @@ INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX IN
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.96);
+    background-color: var(--bkg-image-color);
 }
 
 .form {
@@ -234,24 +295,25 @@ INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX IN
     transition: all 0.3s ease;
     padding: 0 2px;
     z-index: 1;
-    color: black;
+    color: var(--text-color);
 }
 
 .code-input {
     padding: 1rem;
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    border: 1px solid var(--border-deep);
     font-size: 19px;
     font-family: 'Montserrat', sans-serif;
     outline: none;
-    color: black;
+    color: var(--text-color);
+    background-color: var(--bkg-color);
 }
 
 .label::before {
     content: "";
     height: 20px;
-    background-color: white;
+    background-color: var(--bkg-color);
     position: absolute;
     left: 0;
     top: 2px;
@@ -267,13 +329,13 @@ INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX IN
 
 .code-input:focus + .label , 
 .code-input:valid + .label {
-    color: black;
+    color: var(--text-color);
     top: -10px;
     font-size: 15px;
 }
 
 .code-input::placeholder {
-    color: black;
+    color: var(--text-color);
     opacity: 0;
     transition: all .3s ease;
 }
@@ -331,7 +393,7 @@ QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNAIRE QUESTIONNA
 .main-grid-type {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    background-color: rgba(255, 255, 255, 0.96);
+    background-color: var(--bkg-image-color);
     justify-items: center;
 }
 
@@ -365,7 +427,7 @@ h1 {
 
 .category,
 .qnaire-info {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: var(--bkg-image-deep);
     /* Сделать фон немного более беленьким, чтоб символы были виднее */
     padding: 30px;
     border-image: linear-gradient(to right, var(--primary), var(--secondary));
@@ -386,8 +448,8 @@ h1 {
 
 .question {
     padding: 15px;
-    border: 1px solid rgb(206, 206, 206);
-    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--border-color);
+    background-color: var(--bkg-image-deep);
     margin-bottom: 10px;
 }
 
@@ -468,6 +530,8 @@ h1 {
     border-image-slice: 1;
     margin: auto;
     padding: 15px;
+    background-color: var(--bkg-color);
+    color: var(--text-color);
 }
 
 .dialog h1 {
@@ -475,7 +539,7 @@ h1 {
 }
 
 .dialog::backdrop {
-    background-color: rgb(255 255 255 / 0.3);
+    background-color: var(--bkg-backdrop);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }
@@ -510,20 +574,21 @@ strong {
 	cursor: pointer;
 	padding: 0px 60%;
 	line-height: 35px;
-	border: 1px solid rgb(206, 206, 206);
+	border: 1px solid var(--border-color);
 	border-radius: 6px;
 	user-select: none;
     font-weight: 700;
+    background-color: var(--bkg-color);
 }
  
 .input-radio input[type=radio]:checked + label {
-    color: white;
+    color: white; /* возможно нужно поменять для темной темы, но скорее всего оставить как есть */
     background-image: linear-gradient(to right, var(--primary), var(--secondary));
     background-size: 130%;
 }
 
 .input-radio label:hover {
-	color: rgb(206, 206, 206);
+	color: var(--border-color);
 }
 
 .tooltip {
@@ -536,8 +601,8 @@ strong {
     visibility: hidden;
     font-style: italic;
     width: 300px;
-    background-color: white;
-    color: black;
+    background-color: var(--bkg-color);
+    color: var(--text-color);
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -571,10 +636,10 @@ strong {
     content: "";
     width: 50px;
     height: 50px;
-    background: white no-repeat center center;
-    border: 1px solid rgb(206, 206, 206);
+    background: var(--bkg-color) no-repeat center center;
+    border: 1px solid var(--border-color);
     border-radius: 50%;
-    background: white no-repeat center center;
+    background: var(--bkg-color) no-repeat center center;
     background-size: 50% 50%;
     background-image: url("../images/up-arrow.svg");
 }
@@ -600,8 +665,8 @@ CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS
     flex-direction: row;
     justify-content: space-between;
     padding: 15px;
-    border: 1px solid rgb(206, 206, 206);
-    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--border-color);
+    background-color: var(--bkg-image-deep);
 }
 
 .card-container {
@@ -626,8 +691,8 @@ CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS CONTACTS
     font-size: 20px;
     font-weight: 600;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgb(206, 206, 206);
+    background-color: var(--bkg-image-deep);
+    border: 1px solid var(--border-color);
     width: 100%;
     padding: 2px;
     margin-bottom: 25px;
@@ -680,14 +745,14 @@ RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS RATINGS 
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: var(--bkg-image-deep);
 }
 
 .table_sort td,
 .table_sort th {
     height: 40px;
     text-align: center;
-    border: 1px solid rgb(206, 206, 206);
+    border: 1px solid var(--border-color);
 }
 
 .table_sort th {
@@ -792,10 +857,12 @@ PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE 
 .default-input {
     font-family: 'Montserrat';
     outline: 0;
-    border: 1px solid rgb(206, 206, 206);
+    border: 1px solid var(--border-color);
     width: 90%;
     padding: 2px;
     font-size: 16px;
+    background-color: var(--bkg-color);
+    color: var(--text-color);
 }
 
 #profile-table th {
@@ -820,6 +887,8 @@ PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE 
     outline: none;
     font-weight: 700;
     font-size: 16px;
+    background-color: var(--bkg-color);
+    color: var(--text-color);
 }
 
 #codes-table {
@@ -856,7 +925,7 @@ PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE 
 */
 .exit {
     padding: 10px;
-    border: 1px solid black;
+    border: 1px solid var(--text-color);
     font-size: 15px;
     font-weight: 600;
     margin-top: 20px;
@@ -878,4 +947,8 @@ PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE PROFILE 
 .qna-questions strong {
     font-size: 18px;
     font-style: italic;
+}
+
+.icon {
+    filter: var(--invert);
 }
